@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link id="logoPage" rel="icon" type="image/png" href="{{ asset('build/images/chien_chat_bleu.png') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+
+    <div id="wrap">
+        <header>
+            <div class="flexCenter">
+                <img class="logoAnim" src="{{ asset('build/images/banniereAnimNord.png') }}" alt="Logo Anim'Nord">
+            </div>
+            <div id="menu" class="menu flexCenter flexRow">
+                <p><i class="fas fa-paw"></i></p>
+                <a class="linkMenu" href="{{ path("home") }}">Accueil</a>
+                <a class="linkMenu" href="{{ path("adLost") }}">Perdus</a>
+                <a class="linkMenu" href="{{ path("adFind") }}">Trouvés</a>
+{#                <?php#}
+{#            if (isset($_SESSION["id"])) {#}
+{#                ?>#}
+                <a class="linkMenu" href="{{ path("ad") }}">Publier une annonce</a>
+                <a class="linkMenu" id="pseudo" href="../../index.php?controller=user&action=view&id=<?=$_SESSION['id'] ?>"><i class="fas fa-user-circle"></i><?= $_SESSION["firstname"]?></a>
+{#                <?php#}
+{#            }#}
+{#            else {#}
+{#                ?>#}
+                <a class="linkMenu" href="{{ path("login") }}">Connexion</a>
+                <a class="linkMenu" href="{{ path("app_register") }}">Inscription </a>
+{#                <?php#}
+{#            }#}
+{#            ?>#}
+                <p><i class="fas fa-paw"></i></p>
+            </div>
+
+            <div id="menuMobile" class="flexRow align">
+                <p id="logoMenu"><i class="fas fa-bars"></i></p>
+                <img class="logoAnim2" src="{{ asset('build/images/logo-animNord.png') }}" alt="Logo Anim'Nord">
+            </div>
+
+            <div id="subMenu" class="flexColumn">
+                <a class="linkMenuMobile flexRow align" href="{{ path("home") }}"><i class="fas fa-chevron-circle-right"></i>Accueil</a>
+                <a class="linkMenuMobile flexRow align" href="{{ path("adLost") }}"><i class="fas fa-chevron-circle-right"></i>Perdus</a>
+                <a class="linkMenuMobile flexRow align" href="{{ path("adFind") }}"><i class="fas fa-chevron-circle-right"></i>Trouvés</a>
+{#                <?php#}
+{#            if (isset($_SESSION["id"])) {#}
+{#                ?>#}
+                <a class="linkMenuMobile flexRow align" href="{{ path("ad") }}"><i class="fas fa-chevron-circle-right"></i>Publier une annonce</a>
+                <a class="linkMenuMobile flexRow align" href="../../index.php?controller=user&action=view&id=<?=$_SESSION['id'] ?>"><i class="fas fa-chevron-circle-right"></i><i class="fas fa-user-circle"></i><?= $_SESSION["firstname"]?></a>
+{#                <?php#}
+{#            }#}
+{#            else {#}
+{#                ?>#}
+                <a class="linkMenuMobile flexRow align" href="{{ path("login") }}"><i class="fas fa-chevron-circle-right"></i>Connexion</a>
+                <a class="linkMenuMobile flexRow align" href="{{ path("app_register") }}"><i class="fas fa-chevron-circle-right"></i>Inscription</a>
+{#                <?php#}
+{#            }#}
+{#            ?>#}
+            </div>
+        </header>
+
+        <body>
+            {% block body %}{% endblock %}
+        </body>
+
+        <footer class="flexCenter flexColumn">
+            <img id="logosite" src="{{ asset('build/images/chien_chat_bleu.png') }}" alt="Logo Anim'Nord">
+            <p class="colorWhite size18">Suivez-nous :</p>
+            <div class="flexRow">
+                <a href="#"><i class="fab fa-facebook-square linkSocial"></i></a>
+                <a href="#"><i class="fab fa-twitter-square linkSocial"></i></a>
+                <a href="#"><i class="fab fa-instagram-square linkSocial"></i></a>
+            </div>
+            <div class="separatorHorizontal2"></div>
+            <div id="containerlinkFooter" class="flexRow">
+                <a href="../../index.php?controller=legalNotice" class="linkFooter underline">Mentions légales</a>
+                <a href="../../index.php?controller=contact" class="linkFooter underline">Contact</a>
+            </div>
+        </footer>
+    </div>
+
+</html>

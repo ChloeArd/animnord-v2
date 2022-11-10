@@ -1,0 +1,1160 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    font-size: 62.5%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Merriweather', serif;
+    font-size: 15px;
+}
+
+#wrap {
+    min-height: 100%;
+    position: relative;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background-color: #898a8a;
+    height: 150px;
+    margin-bottom: -20px;
+}
+
+main {
+    padding-bottom: 130px;
+}
+
+.width_80 {
+    width: 80%;
+    margin: auto;
+}
+
+.menu, #menu, #menuMobile {
+    width: 100%;
+    padding: 30px;
+    position: relative;
+}
+
+.menu, #menu, #menuMobile, .buttonEnter, .categoriesAnimal, .accountIndex, .helpIndex, .circle, .containerType:hover, .buttonComment {
+    background-color: #2C96C6;
+}
+
+#menuMobile, #menuAccountMobile, #userList, #buttonUser, #subMenu, #userList, #filterCategories, #buttonAccount, #closeModal, #infoLaw {
+    display: none;
+}
+
+#subMenu, #userList {
+    background-color: rgba(44, 150, 198, 0.7);
+    position: absolute;
+    z-index: 999;
+}
+
+#menuAccountMobile {
+    background-color: rgba(220, 237, 243, 0.5);
+}
+
+#buttonAccount, #buttonUser {
+    margin-bottom: 0;
+}
+
+#userList {
+    z-index: 30;
+}
+
+#logoMenu {
+    transition: transform;
+    transition-duration: 1s;
+    font-size: 25px;
+}
+
+#logoMenu:hover {
+    transform-origin: center center;
+    transform: rotate(360deg);
+}
+
+#menu.floatable {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(44, 150, 198, 0.7);
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center, .textCenter, .title, .annonceP, .titlePet, .location, .buttonGrey, .containerType, .titleAccount, .modal2, .tooltip:before  {
+    text-align: center;
+}
+
+.postAnimals {
+    padding: 6px;
+}
+
+.marginAuto {
+    margin: auto;
+}
+
+.align {
+    display: flex;
+    align-items: center;
+}
+
+.colorBlack {
+    color: black;
+}
+
+input.colorBlue, .end {
+    margin-bottom: 20px;
+}
+
+#logoPage, .logoAnim, .backgroundPet, .width_100, .location {
+    width: 100%;
+}
+
+.linkMenu, .linkMenuMobile {
+    font-size: 1.5rem;
+    margin: 0 15px;
+    cursor: url("http://curseursgogo.free.fr/curanimaux/ba.cur"), default;
+}
+
+.linkMenu:hover {
+    background-color: rgba(207, 205, 205, 0.7);
+    border-radius: 5px 5px;
+}
+
+.linkMenuMobile {
+    margin: 0;
+}
+
+.linkMenuMobile:hover {
+    background-color: rgba(207, 205, 205, 0.7);
+}
+
+.fa-paw {
+    font-size: 21px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.buttonWhite {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.fa-chevron-circle-right {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.colorWhite, a, .menu, #menu, #menuMobile, .title3, .buttonGrey:hover, .circle,.containerType:hover, .containerType:hover > p > i.fa-chevron-circle-right,
+.star2, .modal2, #closeModal, .tooltip:before, .userAd  {
+    color: white;
+}
+
+#logosite {
+    position: absolute;
+    width: 100px;
+    left: 20%;
+}
+
+.title {
+    font-size: 30px;
+    background-color: #B7B8B8;
+    height: 110px;
+}
+
+.backgroundWhite, main, .location, .buttonWhite2:hover, .linkSocial, .logoAnim2, .inputWhite, .table >p:nth-child(2n) {
+    background-color: white;
+}
+
+.width_50, #delete > img {
+    width: 50%;
+    margin: auto;
+}
+
+input, textarea, select {
+    margin: 8px 0;
+    background-color: #E4E9EB;
+    color: #2C96C6;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 18px;
+}
+
+button, input, select, textarea {
+    border: none;
+}
+
+textarea {
+    height: 120px;
+}
+
+.size15 {
+    font-size: 15px;
+}
+
+label {
+    margin: 5px;
+}
+
+#registration {
+    padding: 30px;
+}
+
+.radius10, .buttonWhite2, .buttonWhite, .post, .logoAnim2,.linkAccount:hover, .containerAccount, .tooltip:before, .buttonComment,
+.userAd, .commentArticle, .buttonGreen {
+    border-radius: 10px;
+}
+
+.buttonEnter {
+    padding: 8px;
+    margin: 20px auto;
+    width: 50%;
+    box-shadow: 5px 5px 10px #B7B8B8;
+}
+
+.buttonEnter:hover {
+    background-color: #1378a5;
+}
+
+.pointer, #law, .buttonEnter, .star {
+    cursor: pointer;
+}
+
+.annonceP {
+    font-size: 2rem;
+}
+
+.categories, .droite, .cat, .dog, .mâle, .femelle {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.categories, .width_20 {
+    width: 20%;
+}
+
+.categoriesAnimal {
+    padding: 5px;
+}
+
+.categoriePet {
+    margin: 13px;
+}
+
+button {
+    font-size: 2.5rem;
+    margin-left: 25%;
+}
+
+.post{
+    background-color: #E4E9EB;
+    width: 95%;
+    padding: 10px 3px;
+}
+
+select {
+    text-align-last: center;
+    background-color: #E4E9EB;
+}
+
+.margin_0_20 {
+    margin: 0 20px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+.colorBlue, .title2 {
+    color: #2C96C6;
+}
+
+.title2, .title3 {
+    margin: 20px auto;
+    font-size: 25px;
+}
+
+.containerRecentPost {
+    background-color: #E4E9EB;
+    width: 15%;
+    color: grey;
+    margin: 20px;
+    opacity: 70%;
+    height: 360px;
+}
+
+.containerRecentPost:hover {
+    box-shadow: 0 0 5px grey;
+    opacity: 100%;
+    color: #2C96C6;
+    transform-origin: center;
+    transform: scale(1.1);
+}
+
+.imagePet{
+    width: 70%;
+    margin: 10px;
+}
+
+.margin8, .location{
+    margin: 8px;
+}
+
+i {
+    margin: 0 5px;
+}
+
+.separatorHorizontal, .separatorHorizontalWhite {
+    border-top: 3px solid #B7B8B8;
+    width: 40%;
+    margin: 10px auto;
+}
+
+.separatorHorizontal, .question, .buttonWhite2, .numberLost {
+    animation-duration: 4s;
+    animation-name: width;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+
+@keyframes width {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 40%;
+    }
+}
+
+.question {
+    animation-duration: 15s;
+    animation-name: size;
+    position: absolute;
+    width: 50%;
+    font-size: 30px;
+    top: 10%;
+    line-height: 40px;
+}
+
+@keyframes size {
+    from {
+        width: 60%;
+        height: 250px;
+        padding: 50px;
+        font-size: 35px;
+    }
+
+    to {
+        width: 50%;
+        height: 150px;
+        padding: 10px;
+        font-size: 20px;
+    }
+}
+
+.separatorHorizontal2 {
+    border-top: 1px solid #B7B8B8;
+    width: 25%;
+}
+
+.buttonCenter {
+    margin: 20px auto;
+    display: flex;
+    width: fit-content;
+}
+
+.accountIndex, .helpIndex {
+    padding: 100px;
+}
+
+.helpIndex {
+    padding: 50px 25%;
+}
+
+.buttonWhite2 {
+    animation-name: size2;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #B7B8B8;
+    padding: 20px;
+    font-size: 20px;
+    box-shadow: 5px 5px 10px #1378a5;
+    margin: 15px 30px;
+}
+
+@keyframes size2 {
+    from {
+        padding: 40px;
+        font-size: 25px;
+    }
+
+    to {
+        padding: 20px;
+        font-size: 20px;
+    }
+}
+
+.buttonWhite2:hover {
+    color: #898a8a;
+}
+
+.borderBlack {
+    border: 0.5px solid black;
+    width: 70px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.black {
+    background-color: black;
+}
+
+.brown {
+    background-color: #7e5454;
+}
+
+.beige {
+    background-color: #ece8dc;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.grey {
+    background-color: #B7B8B8;
+}
+
+#containerLostAd, .width80 {
+    width: 80%;
+}
+
+.post:hover {
+    background-color: #f0f1f1;
+}
+
+.titlePet {
+    color: #2C96C6;
+    font-size: 18px;
+}
+
+p {
+    line-height: 27px;
+}
+
+.colorGrey {
+    color: grey;
+}
+
+.postDate {
+    position: absolute;
+    z-index: 1;
+    right: 15%;
+}
+
+#connect{
+    padding: 200px;
+}
+
+#contact {
+    padding: 200px 0;
+}
+
+.size18{
+    font-size: 18px;
+}
+
+.size20 {
+    font-size: 20px;
+}
+
+.underline:hover {
+    text-decoration: underline;
+}
+
+.link {
+    font-size: 12px;
+}
+
+.buttonGrey {
+    border: 1px solid #B7B8B8;
+    color: #B7B8B8;
+    padding: 20px;
+    width: fit-content;
+    margin: 20px auto;
+}
+
+.buttonGrey:hover {
+    background-color: #B7B8B8;
+}
+
+.fa-facebook-square {
+    color: #3b5998;
+}
+
+.fa-twitter-square {
+    color: #1DA1F2;
+}
+
+.fa-instagram-square {
+    color: #C32AA3;
+}
+
+.linkSocial {
+    font-size: 25px;
+    margin: 10px;
+}
+
+.linkSocial:hover {
+    box-shadow: 2px 2px 10px #ffffff;
+}
+
+#containerlinkFooter {
+    margin: 20px;
+    font-size: 12px;
+}
+
+.linkFooter {
+    margin: 0 15px;
+}
+
+.circle {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    font-size: 20px;
+    margin: 15px;
+}
+
+.containerType {
+    border: 1px solid #2C96C6;
+    background-color: #f1f3f5;
+    width: 40%;
+    padding: 30px;
+    margin: 20px;
+    color: #2C96C6;
+    transform:
+            perspective(750px)
+            translate3d(0px, 0px, -250px)
+            rotateX(27deg)
+            scale(0.9, 0.9);
+    transition: 0.4s ease-in-out transform;
+    box-shadow: 10px 20px 20px #c1c1c1;
+}
+
+.containerType:hover {
+    transform: translate3d(0px, 0px, -250px);
+}
+
+.marginR {
+    margin-right: 20px;
+}
+
+.margin_15_0 {
+    margin: 15px 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+.logoAnim2 {
+    width: 30%;
+    margin-left: 65%;
+}
+
+.flexWrap {
+    flex-wrap: wrap;
+}
+
+.width_30 {
+    width: 30%;
+}
+
+.width_70 {
+    width: 70%;
+}
+
+#catDogLost {
+    margin: 20px 0;
+}
+
+.buttonRed {
+    color: red;
+    background-color: transparent;
+}
+
+.buttonRed2 {
+    background-color: #e94343;
+    margin: 20px;
+}
+
+.buttonRed2:hover {
+    background-color: #b71d1d;
+}
+
+#menuAccount {
+    height: 100px;
+    margin: auto;
+}
+
+.titleAccount {
+    color: #1378a5;
+    text-decoration: underline;
+    padding: 15px;
+}
+
+.colorOrange {
+    color: #fcac3d;
+}
+
+.separatorVertical {
+    border-left: 1px solid #B7B8B8;
+    height: 50px;
+}
+
+.linkAccount:hover {
+    background-color: #E4E9EB;
+}
+
+.containerAccount {
+    background-color: #E4E9EB;
+    width: 50%;
+    padding: 20px;
+    margin: 25px auto;
+}
+
+.inputWhite {
+    width: 100%;
+}
+
+.fa-edit:hover, .fa-trash-alt:hover, .fa-star:hover {
+    color: #e94343;
+}
+
+.fa-star {
+    position: absolute;
+    padding-top: 20px;
+}
+
+.star, .star2 {
+    position: absolute;
+    z-index: 10;
+    right: 13%;
+}
+
+.star2 {
+    right: 20%;
+    margin-top: 23px;
+}
+
+.fas.fa-star {
+    color: red;
+}
+
+.fas.fa-star:hover {
+    color: black;
+}
+
+.modal2 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 50px;
+    font-size: 22px;
+}
+
+.modal2, #closeModal {
+    position: absolute;
+    z-index: 20;
+}
+
+#closeModal {
+    top: 2px;
+    right: 30px;
+    background-color: transparent;
+    padding: 6px;
+    font-size: 15px;
+}
+
+#closeModal:hover {
+    color: black;
+}
+
+#success {
+    background-color: #64be64;
+}
+
+#error, .backgroundRed {
+    background-color: #fa3535;
+}
+
+.required {
+    position: absolute;
+    margin-bottom: 60px;
+    margin-left: 5px;
+}
+
+.tooltip {
+    position:relative;
+}
+
+.tooltip:before {
+    content: attr(data-text);
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+    left: 18%;
+    margin-left:15px;
+    font-size: 12px;
+    width: 200px;
+    background: #2C96C6;
+    display:none;
+}
+
+.tooltip:hover:before {
+    display:block;
+}
+
+input:focus, textarea:focus, select:focus {
+    border: 2px solid #1DA1F2;
+    outline: none;
+}
+#delete {
+    padding: 50px;
+}
+
+.colorRed {
+    color: #f83c3c;
+}
+
+.table > p {
+    padding: 7px;
+}
+
+.buttonComment {
+    margin: 15px;
+}
+
+.buttonComment:hover {
+    background-color: #1378a5;
+}
+
+.buttonComment:hover, #success, #error, .buttonGrey {
+    box-shadow: 5px 5px 10px grey;
+}
+
+.userAd {
+    margin: 20px;
+    background-color: #e94343;
+    padding: 20px 50px;
+}
+
+.commentArticle {
+    margin: 15px auto;
+    background-color: #fafafd;
+    padding: 15px;
+    width: 70%;
+}
+
+.size12 {
+    font-size: 12px;
+}
+
+.bold, .titlePet, .categoriesAnimal {
+    font-weight: bold;
+}
+
+.margin100 {
+    margin: 100px auto;
+}
+
+.editIndex {
+    position: absolute;
+    font-size: 40px;
+    left: 10%;
+    top: 10%;
+}
+
+.buttonGreen {
+    background-color: #64be64;
+    margin-top: 15px;
+}
+
+.buttonGreen:hover {
+    background-color: #348d34;
+}
+
+#text2 {
+    height: 360px;
+}
+
+.backgroundGrey {
+    background-color: #E4E9EB;
+    color: #2C96C6;
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
+.containerUsers, .messages2 {
+    width: 20%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border: 1px solid #B7B8B8;
+    height: 70vh;
+}
+
+.messages2 {
+    width: 100%;
+}
+
+.messages {
+    margin-top: 20px;
+    width: 80%;
+    height: 70vh;
+}
+
+.size40 {
+    font-size: 40px;
+}
+
+.message {
+    font-size: 13px;
+    background-color: rgba(29, 161, 242,0.3);
+    border-radius: 20px;
+    margin: 20px;
+}
+
+.message, .buttonGreen, .buttonComment, .tooltip:before, .linkAccount, .buttonRed2, .title, .linkMenu, .linkMenuMobile, #userList {
+    padding: 10px;
+}
+
+.containerUser {
+    background-color: #dbe3e7;
+}
+
+.containerUser:hover {
+    background-color: #ffe993;
+}
+
+.separatorHorizontal3 {
+    border-top: 2px solid #B7B8B8;
+    width: 100%;
+}
+
+.textareaMessage {
+    height: 40px;
+    width: 78%;
+}
+
+.containerUsers > h3 {
+    padding: 15px;
+}
+
+.numberLost {
+    animation-name: opacity;
+}
+
+@keyframes opacity {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.postTransform {
+    transform: perspective(1800px) rotateY(10deg);
+    box-shadow: rgba(0, 0, 0, 0.25) 0 25px 30px;
+    margin: 30px;
+}
+
+.postTransform:hover {
+    transform: perspective(3000px) rotateY(5deg);
+}
+
+@media screen and (max-width: 1100px) {
+    .width_80 {
+        width: 100%;
+    }
+    .postDate {
+        right: 10%;
+    }
+    #containerLostAd {
+        width: 95%;
+    }
+    .star {
+        right: 3%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .categories {
+        width: 30%;
+    }
+    .postDate {
+        right: 6%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #menu, #menuAccount, .logoAnim, .containerUsers, .categories {
+        display: none;
+    }
+    #menuMobile, #buttonAccount, #buttonUser {
+        display: flex;
+    }
+    .containerType {
+        width: 80%;
+    }
+    #logosite {
+        width: 70px;
+    }
+    .containerRecentPost {
+        width: 20%;
+    }
+    .question {
+        top: 6%;
+        width: 70%;
+    }
+    .editIndex {
+        top: 6%;
+        left: 4%;
+    }
+    #connect {
+        padding: 150px 30px;
+    }
+    #filterCategories {
+        display: block;
+    }
+    .categories {
+        width: 100%;
+        position: absolute;
+        z-index: 2;
+        background-color: rgba(153, 153, 153, 0.7);
+    }
+    .imagePet, .messages, .containerUsers, #containerLostAd {
+        width: 100%;
+    }
+    #menuAccount {
+        height: 250px;
+        flex-wrap: wrap;
+    }
+    .containerAccount {
+        width: 95%;
+    }
+    .postAnimals {
+        margin-left: 20px;
+    }
+    .star2 {
+        right: 10%;
+    }
+    .question, .buttonWhite2, .separatorHorizontal, .numberLost {
+        animation: none;
+    }
+    .modal2 {
+        padding: 30px;
+        font-size: 18px;
+    }
+    #formSearchUser {
+        flex-direction: column;
+    }
+    #formSearchUser > input, #formSearchUser > select {
+        margin: 10px;
+    }
+    .postTransform, .postTransform:hover, .containerType, .containerType:hover {
+        transform: none;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .helpIndex {
+        padding: 50px 15%;
+    }
+    .containerRecentPost {
+        width: 40%;
+    }
+    #containerLostAd > div.post {
+        margin: 0;
+        border-radius: 0;
+    }
+    #containerLostAd > .post {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .message {
+        padding: 8px;
+        margin: 15px;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .question {
+        width: 80%;
+    }
+    .title3 {
+        font-size: 20px;
+    }
+    .editIndex {
+        top: 12%;
+    }
+}
+
+@media screen and (max-width: 650px){
+    .logoAnim2 {
+        width: 50%;
+        margin-left: 45%;
+    }
+    #logosite {
+        width: 60px;
+        left: 15%;
+    }
+    #formRegistration, #formConnect, #formAd{
+        width: 100%;
+    }
+    #formAd > select, #formAd > textarea, #name, #race, #num, #formAd > div > div > input {
+        font-size: 25px;
+    }
+    #formAd > textarea {
+        height: 250px;
+    }
+    #formAd {
+        padding: 15px;
+    }
+    .question {
+        width: 95%;
+        font-size: 25px;
+    }
+    .postDate {
+        position: relative;
+        margin-left: 20px;
+    }
+    .star2 {
+        right: 5%;
+    }
+    .post > .categoriesAnimal {
+        font-size: 18px;
+        padding: 20px;
+    }
+    .buttonGreen {
+        padding: 8px;
+    }
+    .editIndex {
+        top: 11%;
+    }
+    #contact {
+        padding: 30px 0;
+    }
+    #contact > form, .commentArticle {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 500px){
+    .title {
+        font-size: 25px;
+    }
+    #logosite {
+        width: 50px;
+        left: 12%;
+    }
+    .question {
+        position: relative;
+        border: 3px dashed #B7B8B8;
+        margin: 10px;
+    }
+    #connection_disconnection, #catDogLost {
+        display: flex;
+        flex-direction: column;
+    }
+    .accountIndex {
+        padding: 100px 50px;
+    }
+    .table {
+        width: 90%;
+    }
+    .userAd {
+        padding: 15px;
+    }
+    .editIndex {
+        top: 4%;
+    }
+    .message {
+        padding: 8px;
+        margin: 15px;
+        font-size: 15px;
+    }
+    #formMessage {
+        width: 95%;
+    }
+    #formMessage > input.buttonEnter {
+        font-size: 15px;
+        width: initial;
+    }
+    #date {
+        flex-direction: column;
+        align-items: initial;
+    }
+    #date_lost, #date_find {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 400px){
+    #freeAd {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+    .title {
+        font-size: 20px;
+    }
+    #typeAd {
+        font-size: 16px;
+    }
+    .logoAnim2 {
+        width: 70%;
+        margin-left: 25%;
+    }
+    .buttonEnter, .containerRecentPost {
+        width: 80%;
+    }
+    .question {
+        font-size: 17px;
+    }
+    .post > .categoriesAnimal {
+        font-size: 15px;
+    }
+}
