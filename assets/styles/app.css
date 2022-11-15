@@ -233,7 +233,8 @@ label {
 
 .buttonEnter {
     padding: 8px;
-    margin: 20px auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 50%;
     box-shadow: 5px 5px 10px #B7B8B8;
 }
@@ -718,7 +719,6 @@ li {
 }
 
 .required {
-    position: absolute;
     margin-bottom: 60px;
     margin-left: 5px;
 }
@@ -770,6 +770,10 @@ input:focus, textarea:focus, select:focus {
 
 .buttonComment:hover, #success, #error, .buttonGrey {
     box-shadow: 5px 5px 10px grey;
+}
+
+form > div > label, form > div > input {
+    width: 100%;
 }
 
 .userAd {
