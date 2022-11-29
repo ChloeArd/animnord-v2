@@ -5,6 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link id="logoPage" rel="icon" type="image/png" href="{{ asset('build/images/chien_chat_bleu.png') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/351e9300a0.js" crossorigin="anonymous"></script>
 
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -26,20 +27,13 @@
                 <a class="linkMenu" href="{{ path("home") }}">Accueil</a>
                 <a class="linkMenu" href="{{ path("adLost") }}">Perdus</a>
                 <a class="linkMenu" href="{{ path("adFind") }}">Trouvés</a>
-{#                <?php#}
-{#            if (isset($_SESSION["id"])) {#}
-{#                ?>#}
-                <a class="linkMenu" href="{{ path("ad") }}">Publier une annonce</a>
-                <a class="linkMenu" id="pseudo" href="../../index.php?controller=user&action=view&id=<?=$_SESSION['id'] ?>"><i class="fas fa-user-circle"></i><?= $_SESSION["firstname"]?></a>
-{#                <?php#}
-{#            }#}
-{#            else {#}
-{#                ?>#}
-                <a class="linkMenu" href="{{ path("login") }}">Connexion</a>
-                <a class="linkMenu" href="{{ path("app_register") }}">Inscription </a>
-{#                <?php#}
-{#            }#}
-{#            ?>#}
+                {% if (app.user) %}
+                    <a class="linkMenu" href="{{ path("ad") }}">Publier une annonce</a>
+                    <a class="linkMenu" id="pseudo" href="../../index.php?controller=user&action=view&id=<?=$_SESSION['id'] ?>"><i class="fas fa-user-circle"></i><?= $_SESSION["firstname"]?></a>
+                {% else %}
+                    <a class="linkMenu" href="{{ path("login") }}">Connexion</a>
+                    <a class="linkMenu" href="{{ path("app_register") }}">Inscription </a>
+                {% endif %}
                 <p><i class="fas fa-paw"></i></p>
             </div>
 
