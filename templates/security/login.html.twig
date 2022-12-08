@@ -3,18 +3,17 @@
 {% block title %}Anim'Nord - Connexion{% endblock %}
 
 {% block body %}
-
     <main class="width_80">
         <h1 class="flexCenter title colorWhite"> Connexion </h1>
         <div id="connect" class="backgroundWhite flexCenter width_100">
             <form method="post" id="formConnect" class="flexColumn width_50">
                 {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <div class="alert2 alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
                 {% if app.user %}
-                    <div class="mb-3">
-                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    <div class="mb-3 colorBlue margin_15_0">
+                        Vous êtes connecté en tant que {{ app.user.firstname }} {{ app.user.lastname }}, <a class="buttonRed" href="{{ path('app_logout') }}">se déconnecter ?</a>
                     </div>
                 {% endif %}
                 <label for="inputEmail"> Adresse E-mail <span class="size15 colorBlue required">*</span></label>
@@ -25,7 +24,7 @@
                 <input type="hidden" name="_csrf_token"
                        value="{{ csrf_token('authenticate') }}"
                 >
-                <input type="submit" class="buttonEnter colorWhite radius10 pointer" value="Connexion">
+                <input type="submit" class="buttonEnter colorWhite radius10 pointer marginAuto" value="Connexion">
                 <a href="{{ path("app_register") }}" class="buttonGrey">Pas encore inscrit ?</a>
             </form>
         </div>

@@ -1,7 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Anim'Nord - Mon compte{% endblock %}
 
 {% block body %}
-    <p>Account</p>
+    {% if app.user %}
+        <main>
+            <div id="buttonAccount" class="buttonEnter colorWhite flexCenter">Mon compte <i class="fas fa-caret-down"></i></div>
+
+            <div class="flexColumn marginAuto width_70" id="menuAccountMobile">
+                <a href="" class="colorGrey margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorGrey"></i>Mes informations</a>
+                <a href="" class="colorGrey margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorGrey"></i>Mes annonces</a>
+                <a href="" class="colorGrey margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorGrey"></i>Mes favoris</a>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="" class="colorOrange margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorOrange"></i>Gestion des utilisateurs</a>
+                {% endif %}
+                <a href="{{ path('app_logout') }}" class="disconnection buttonRed margin_0_20 linkAccount"><i class="fas fa-sign-out-alt colorRed"></i> Me déconnecter</a>
+            </div>
+
+            <div class="flexRow flexCenter" id="menuAccount">
+                <a href="" class="colorBlue margin_0_20 linkAccount">Mes informations</a>
+                <div class="separatorVertical"></div>
+                <a href="" class="colorBlue margin_0_20 linkAccount">Mes annonces</a>
+                <div class="separatorVertical"></div>
+                <a href="" class="colorBlue margin_0_20 linkAccount">Mes favoris</a>
+                <div class="separatorVertical"></div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="" class="colorOrange margin_0_20 linkAccount">Gestion des utilisateurs</a>
+                    <div class="separatorVertical"></div>
+                {% endif %}
+                <a href="{{ path('app_logout') }}" class="disconnection buttonRed margin_0_20 linkAccount"> Me déconnecter</a>
+
+            </div>
+
+            <div>
+                <h1 class="titleAccount">Mes informations personnelles</h1>
+                <div class="containerAccount table">
+                    <p  class="colorBlack size20">Nom : <span class="colorBlue">{{ app.user.lastname }}</span></p>
+                    <p  class="colorBlack size20">Prénom : <span class="colorBlue">{{ app.user.firstname }}</span></p>
+                    <p  class="colorBlack size20">Email : <span class="colorBlue">{{ app.user.email }}</span></p>
+                    <p  class="colorBlack size20">Téléphone : <span class="colorBlue">{{ app.user.phone }}</span></p>
+                    <div class="flexCenter">
+                        <a href="{{ path("user_update_info", {id: app.user.id }) }}" class="buttonEnter center colorWhite">Modifier <i class="far fa-edit"></i></a>
+                    </div>
+                </div>
+
+                <div class="flexCenter">
+                    <a href="{{ path("user_update_password", {id: app.user.id}) }}" class="buttonGrey">Changer mon mot de passe <i class="far fa-edit"></i></a>
+                </div>
+
+                <div class="flexCenter">
+                    <a href="{{ path("user_delete", {id: app.user.id}) }}" class="buttonRed2 radius10 colorWhite">Supprimer mon compte</a>
+                </div>
+            </div>
+        </main>
+    {% endif %}
 {% endblock %}
+{#<?php#}
+{#$return = "";#}
+{#$id = "";#}
+
+{#if (isset($_GET['success'])) {#}
+{#    $id = "success";#}
+{#    switch ($_GET['success']) {#}
+{#        case '0':#}
+{#            $return = "Vos informations personnelles ont bien été modifié !";#}
+{#            break;#}
+{#        case '1':#}
+{#            $return = "Votre mot de passe a bien été changé !";#}
+{#            break;#}
+{#    }#}
+{#}#}
+

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anim'Nord - Modification des informations personnelles{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <main>
+            <div>
+                <h1 class="titleAccount">Modification des informations personnelles</h1>
+                <div class="containerAccount">
+                    {{ form_start(form, { 'attr': {'class': 'flexColumn'}})}}
+                    {{ form_row(form.firstname, { 'attr': {'class': 'inputWhite colorBlue'}})}}
+                    {{ form_row(form.lastname, { 'attr': {'class': 'inputWhite colorBlue'}})}}
+                    {{ form_row(form.email, { 'attr': {'class': 'inputWhite colorBlue'}})}}
+                    {{ form_row(form.phone, { 'attr': {'class': 'inputWhite colorBlue'}})}}
+                    <div class="d-none">
+                        {{ form_row(form.password) }}
+                        {{ form_row(form.roles) }}
+                        {{ form_row(form.isVerified) }}
+                    </div>
+                    <div class="mb-3 flexCenter">
+                        <input type="submit" value="Enregistrer" name="submit" class="buttonEnter colorWhite">
+                    </div>
+                    {{ form_widget(form._token) }}
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token("user_update_info") }}">
+                    {{ form_end(form, {'render_rest': false}) }}
+                </div>
+            </div>
+        </main>
+    {% endif %}
+{% endblock %}
+
+

@@ -3,7 +3,6 @@
 {% block title %}Anim'Nord{% endblock %}
 
 {% block body %}
-    <div id='' class='modal2 colorWhite'><?= $return?><button id='closeModal' class='buttonClassic'><i class='fas fa-times'></i></button></div>
     <main class=" width_100 flexColumn">
         <?php
         if (isset($var['content'])) {
@@ -15,10 +14,10 @@
                     }
                 }
                 ?>
-        <div class="flexCenter flexColumn">
-            <img class="backgroundPet" src="<?=$content->getPicture() ?>" alt="chien et chat">
-            <p class="question buttonWhite colorBlue flexCenter"></p>
-        </div>
+{#        <div class="flexCenter flexColumn">#}
+{#            <img class="backgroundPet" src="<?=$content->getPicture() ?>" alt="chien et chat">#}
+{#            <p class="question buttonWhite colorBlue flexCenter"></p>#}
+{#        </div>#}
         <div class="helpIndex colorWhite"></div>
         <?php
             }

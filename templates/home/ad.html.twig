@@ -1,20 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ad !{% endblock %}
+{% block title %}Anim'Nord - Publier une annonce{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    </style>
+    <main class="width_80">
+        <h1 class="flexCenter title colorWhite"> Publication d'une annonce</h1>
+        <div id="publish" class="backgroundWhite flexCenter flexColumn width_100">
+            <p id="typeAd" class="width_100 center categoriesAnimal size20 colorWhite margin_15_0">Type d'annonce</p>
+            <a href="../index.php?controller=adlost&action=new" class="containerType">
+                <p><i class="fas fa-chevron-circle-right colorBlue"></i>J'ai perdu mon chien ou mon chat.</p>
+            </a>
+            <a href="../index.php?controller=adfind&action=new" class="containerType">
+                <p><i class="fas fa-chevron-circle-right colorBlue"></i>J'ai trouvé un chien ou un chat.</p>
+            </a>
+            <p id="freeAd" class="colorGrey margin_15_0">La publication est totalement gratuite et instantanée !</p>
+        </div>
+        <div class="helpIndex flexCenter flexColumn colorWhite">
+            <h2 class="title3">Comment publier une annonce ?</h2>
+            <div class="margin_15_0">
+                <p class="size18">C'est très simple, il vous suffit de :</p>
+                <ul>
+                    <li>choisir parmis les 2 types d'annonces proposés,</li>
+                    <li>complêter le formulaire,</li>
+                    <li>cliquer sur "publier", et voilà <i class="far fa-laugh-wink"></i></li>
+                </ul>
+            </div>
+        </div>
+    </main>
 
-    <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
-
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code><a href="{{ 'C:/Users/chloe/PhpstormProjects/animnord-v2/src/Controller/FavoriteFindController.php'|file_link(0) }}">src/Controller/FavoriteFindController.php</a></code></li>
-            <li>Your template at <code><a href="{{ 'C:/Users/chloe/PhpstormProjects/animnord-v2/templates/favorite_find/index.html.twig'|file_link(0) }}">templates/favorite_find/index.html.twig</a></code></li>
-        </ul>
-    </div>
 {% endblock %}

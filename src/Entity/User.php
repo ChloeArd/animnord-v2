@@ -44,6 +44,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    // To know if the account is deleted or not by the user
+    #[ORM\Column(type: 'boolean')]
+    private $active = true;
+
     #[ORM\OneToMany(mappedBy: 'user_fk', targetEntity: AdFind::class)]
     private Collection $adFinds;
 
@@ -186,6 +190,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param bool $active
+     * @return User
+     */
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }

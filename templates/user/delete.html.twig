@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anim'Nord - Supprimer mon compte{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <main class="flexCenter flexColumn">
+            <h1 class="margin_15_0 colorRed center">Voulez-vous vraiment supprimer votre compte ?</h1>
+            <p class="colorGrey">En supprimant votre compte, vous effacez toutes les annonces, commentaires que vous avez postés et vos favoris.</p>
+
+            <form id="delete" class="width_80 flexColumn flexCenter" method="post" action="">
+                <p class="size20 colorBlue">{{ app.user.firstname }} {{ app.user.lastname }}</p>
+                <input name="deleteUser" type="submit" class="buttonEnter colorWhite radius10 pointer backgroundRed" value="Supprimer">
+            </form>
+        </main>
+    {% endif %}
+{% endblock %}
+
+

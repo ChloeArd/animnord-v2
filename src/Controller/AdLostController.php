@@ -15,4 +15,11 @@ class AdLostController extends AbstractController
             'controller_name' => 'AdLostController',
         ]);
     }
+
+    #[Route('/ad/lost/add', name: 'adLost_add')]
+    public function add(): Response
+    {
+
+        return $this->render('ad_lost/add.html.twig');
+    }
 }

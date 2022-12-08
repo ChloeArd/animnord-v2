@@ -18,6 +18,13 @@
     </head>
 
     <div id="wrap">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div id="alert" class='alert alert-{{ type }}'>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         <header>
             <div class="flexCenter">
                 <img class="logoAnim" src="{{ asset('build/images/banniereAnimNord.png') }}" alt="Logo Anim'Nord">
@@ -29,7 +36,7 @@
                 <a class="linkMenu" href="{{ path("adFind") }}">Trouvés</a>
                 {% if (app.user) %}
                     <a class="linkMenu" href="{{ path("ad") }}">Publier une annonce</a>
-                    <a class="linkMenu" id="pseudo" href="../../index.php?controller=user&action=view&id=<?=$_SESSION['id'] ?>"><i class="fas fa-user-circle"></i><?= $_SESSION["firstname"]?></a>
+                    <a class="linkMenu" id="pseudo" href="{{ path("account") }}"><i class="fas fa-user-circle"></i><?= $_SESSION["firstname"]?></a>
                 {% else %}
                     <a class="linkMenu" href="{{ path("login") }}">Connexion</a>
                     <a class="linkMenu" href="{{ path("app_register") }}">Inscription </a>
@@ -46,20 +53,13 @@
                 <a class="linkMenuMobile flexRow align" href="{{ path("home") }}"><i class="fas fa-chevron-circle-right"></i>Accueil</a>
                 <a class="linkMenuMobile flexRow align" href="{{ path("adLost") }}"><i class="fas fa-chevron-circle-right"></i>Perdus</a>
                 <a class="linkMenuMobile flexRow align" href="{{ path("adFind") }}"><i class="fas fa-chevron-circle-right"></i>Trouvés</a>
-{#                <?php#}
-{#            if (isset($_SESSION["id"])) {#}
-{#                ?>#}
-                <a class="linkMenuMobile flexRow align" href="{{ path("ad") }}"><i class="fas fa-chevron-circle-right"></i>Publier une annonce</a>
-                <a class="linkMenuMobile flexRow align" href="../../index.php?controller=user&action=view&id=<?=$_SESSION['id'] ?>"><i class="fas fa-chevron-circle-right"></i><i class="fas fa-user-circle"></i><?= $_SESSION["firstname"]?></a>
-{#                <?php#}
-{#            }#}
-{#            else {#}
-{#                ?>#}
-                <a class="linkMenuMobile flexRow align" href="{{ path("login") }}"><i class="fas fa-chevron-circle-right"></i>Connexion</a>
-                <a class="linkMenuMobile flexRow align" href="{{ path("app_register") }}"><i class="fas fa-chevron-circle-right"></i>Inscription</a>
-{#                <?php#}
-{#            }#}
-{#            ?>#}
+                {% if (app.user) %}
+                    <a class="linkMenuMobile flexRow align" href="{{ path("ad") }}"><i class="fas fa-chevron-circle-right"></i>Publier une annonce</a>
+                    <a class="linkMenuMobile flexRow align" href="{{ path("account") }}"><i class="fas fa-chevron-circle-right"></i><i class="fas fa-user-circle"></i><?= $_SESSION["firstname"]?></a>
+                {% else %}
+                    <a class="linkMenuMobile flexRow align" href="{{ path("login") }}"><i class="fas fa-chevron-circle-right"></i>Connexion</a>
+                    <a class="linkMenuMobile flexRow align" href="{{ path("app_register") }}"><i class="fas fa-chevron-circle-right"></i>Inscription</a>
+                {% endif %}
             </div>
         </header>
 
@@ -77,7 +77,7 @@
             </div>
             <div class="separatorHorizontal2"></div>
             <div id="containerlinkFooter" class="flexRow">
-                <a href="../../index.php?controller=legalNotice" class="linkFooter underline">Mentions légales</a>
+                <a href="{{ path("app_legal_notice") }}" class="linkFooter underline">Mentions légales</a>
                 <a href="../../index.php?controller=contact" class="linkFooter underline">Contact</a>
             </div>
         </footer>

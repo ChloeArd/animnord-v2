@@ -46,7 +46,7 @@ main {
     position: relative;
 }
 
-.menu, #menu, #menuMobile, .buttonEnter, .categoriesAnimal, .accountIndex, .helpIndex, .circle, .containerType:hover, .buttonComment {
+.menu, #menu, #menuMobile, .buttonEnter, form > div > div > button, .categoriesAnimal, .accountIndex, .helpIndex, .circle, .containerType:hover, .buttonComment {
     background-color: #2C96C6;
 }
 
@@ -171,10 +171,11 @@ a {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.colorWhite, a, .menu, #menu, #menuMobile, .title3, .buttonGrey:hover, .circle,.containerType:hover, .containerType:hover > p > i.fa-chevron-circle-right,
+.colorWhite, form > div > div > button, a, .menu, #menu, #menuMobile, .title3, .buttonGrey:hover, .circle,.containerType:hover, .containerType:hover > p > i.fa-chevron-circle-right,
 .star2, .modal2, #closeModal, .tooltip:before, .userAd  {
     color: white;
 }
+
 
 #logosite {
     position: absolute;
@@ -206,6 +207,11 @@ input, textarea, select {
     font-size: 18px;
 }
 
+form > div > div > button {
+    border-radius: 5px;
+    font-size: 18px;
+}
+
 button, input, select, textarea {
     border: none;
 }
@@ -231,7 +237,7 @@ label {
     border-radius: 10px;
 }
 
-.buttonEnter {
+.buttonEnter, form > div > div > button {
     padding: 8px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -239,11 +245,11 @@ label {
     box-shadow: 5px 5px 10px #B7B8B8;
 }
 
-.buttonEnter:hover {
+.buttonEnter:hover, form > div > div > button:hover {
     background-color: #1378a5;
 }
 
-.pointer, #law, .buttonEnter, .star {
+.pointer, #law, .buttonEnter, .star, form > div > div > button {
     cursor: pointer;
 }
 
@@ -685,17 +691,30 @@ li {
     color: black;
 }
 
-.modal2 {
+.modal2, .alert {
     top: 0;
     left: 0;
     width: 100%;
     padding: 50px;
     font-size: 22px;
+    color: white;
+    text-align: center;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.alert2 {
+    color: red;
+    margin: 15px;
+    font-size: 20px;
 }
 
 .modal2, #closeModal {
     position: absolute;
     z-index: 20;
+}
+
+.d-none {
+    display: none;
 }
 
 #closeModal {
@@ -710,11 +729,11 @@ li {
     color: black;
 }
 
-#success {
+#success, .alert-success {
     background-color: #64be64;
 }
 
-#error, .backgroundRed {
+#error, .backgroundRed, .alert-error {
     background-color: #fa3535;
 }
 
@@ -897,6 +916,24 @@ form > div > label, form > div > input {
         opacity: 1;
     }
 }
+
+form, form > div > div  {
+    display: flex;
+    flex-direction: column;
+}
+
+form > div > div > input {
+    background-color: white;
+}
+
+form > div > div {
+    margin: 0;
+}
+
+.required {
+    margin-bottom: 0;
+}
+
 
 .postTransform {
     transform: perspective(1800px) rotateY(10deg);
