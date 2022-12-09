@@ -3,16 +3,26 @@
 namespace App\Form;
 
 use App\Entity\AdLost;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class AdLostType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $date = new \DateTime();
+
         $builder
             ->add('animal', ChoiceType::class, [
                 'label' => 'Animal :',
@@ -81,18 +91,39 @@ class AdLostType extends AbstractType
             ])
             ->add('race', TextType::class, [
                 'label' => 'Race :',
-                'placeholder' => 'Ex: berger allemand'
+                ['attr' => ['placeholder' => 'Ex: berger allemand']]
             ])
             ->add('number', TextType::class, [
                 'label' => 'Numéro du tatouage ou de la puce :',
-                'placeholder' => "Ex : 123ABC"
+                ['attr' => ['placeholder' => "Ex : 123ABC"]]
             ])
-            ->add('description')
-            ->add('date_lost')
-            ->add('date')
-            ->add('city')
-            ->add('picture')
-            ->add('user_fk')
+            ->add('description', TextareaType::class, ['label' => 'Description :'])
+            ->add('date_lost', DateType::class, [
+                'label' => "Perdu le :",
+                'widget' => 'choice',
+                'day' => range(1, 31),
+                "month" => range(1, 12),
+                "years" => range((int) $date->modify("-2years")->format("Y"), (int) $date->format("Y"))
+            ])
+            ->add('date', DateType::class, ['widget' => 'single_text'])
+            ->add('city', ChoiceType::class, [
+                'label' => 'Ville :',
+//                'choices' => [
+//
+//                ]
+            ])
+            ->add('picture', FileType::class, [
+                'label' => 'Sélectionner une image à télécharger (PNG, JPEG, JPG) ',
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => ["image/png, image/jpeg, image/jpg"],
+                        'mimeTypesMessage' => 'Veuillez télécharger un document JPG, PNG, JPEG valide !',
+                    ])
+                ],
+            ])
+            ->add('user_fk', EntityType::class, ['class' => User::class, "choice_label" => "id"])
+            ->add('submit', SubmitType::class, ["label" => "Publier"])
         ;
     }
 
