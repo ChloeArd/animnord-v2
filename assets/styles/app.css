@@ -46,7 +46,7 @@ main {
     position: relative;
 }
 
-.menu, #menu, #menuMobile, .buttonEnter, form > div > div > button, .categoriesAnimal, .accountIndex, .helpIndex, .circle, .containerType:hover, .buttonComment {
+.menu, #menu, #menuMobile, .buttonEnter, form > div > div > button,form > div > button, .categoriesAnimal, .accountIndex, .helpIndex, .circle, .containerType:hover, .buttonComment {
     background-color: #2C96C6;
 }
 
@@ -90,14 +90,25 @@ main {
     background-color: rgba(44, 150, 198, 0.7);
 }
 
-.flexColumn {
+.flexColumn, form > div > div, form > div > div > div, form > div{
     display: flex;
     flex-direction: column;
 }
 
-.flexRow {
+.flexRow, #ad_lost_animal {
     display: flex;
     flex-direction: row;
+}
+
+li::marker {
+    color: transparent;
+}
+
+form > div > ul > li {
+    background-color: #e94343;
+    color: white;
+    text-align: center;
+    padding: 5px;
 }
 
 .flexCenter {
@@ -118,7 +129,7 @@ main {
     margin: auto;
 }
 
-.align {
+.align, form > div > div {
     display: flex;
     align-items: center;
 }
@@ -171,7 +182,7 @@ a {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.colorWhite, form > div > div > button, a, .menu, #menu, #menuMobile, .title3, .buttonGrey:hover, .circle,.containerType:hover, .containerType:hover > p > i.fa-chevron-circle-right,
+.colorWhite, form > div > div > button, form > div > button, a, .menu, #menu, #menuMobile, .title3, .buttonGrey:hover, .circle,.containerType:hover, .containerType:hover > p > i.fa-chevron-circle-right,
 .star2, .modal2, #closeModal, .tooltip:before, .userAd  {
     color: white;
 }
@@ -207,11 +218,10 @@ input, textarea, select {
     font-size: 18px;
 }
 
-form > div > div > button {
+form > div > div > button, form > div > button {
     border-radius: 5px;
     font-size: 18px;
 }
-
 button, input, select, textarea {
     border: none;
 }
@@ -237,7 +247,7 @@ label {
     border-radius: 10px;
 }
 
-.buttonEnter, form > div > div > button {
+.buttonEnter, form > div > div > button, form > div > button {
     padding: 8px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -245,11 +255,11 @@ label {
     box-shadow: 5px 5px 10px #B7B8B8;
 }
 
-.buttonEnter:hover, form > div > div > button:hover {
+.buttonEnter:hover, form > div > div > button:hover, form > div > button:hover {
     background-color: #1378a5;
 }
 
-.pointer, #law, .buttonEnter, .star, form > div > div > button {
+.pointer, #law, .buttonEnter, .star, form > div > div > button, form > div > button {
     cursor: pointer;
 }
 
@@ -585,6 +595,14 @@ p {
     margin-right: 20px;
 }
 
+#color > li::marker {
+    color: #2C96C6;
+}
+
+#color > li {
+    margin-left: 20px;
+}
+
 .margin_15_0 {
     margin: 15px 0;
 }
@@ -793,6 +811,10 @@ input:focus, textarea:focus, select:focus {
 
 form > div > label, form > div > input {
     width: 100%;
+}
+
+form > div {
+    margin: 10px 0;
 }
 
 .userAd {

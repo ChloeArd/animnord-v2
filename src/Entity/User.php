@@ -42,11 +42,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
+    private bool $isVerified = false;
 
     // To know if the account is deleted or not by the user
     #[ORM\Column(type: 'boolean')]
-    private $active = true;
+    private bool $active = true;
 
     #[ORM\OneToMany(mappedBy: 'user_fk', targetEntity: AdFind::class)]
     private Collection $adFinds;

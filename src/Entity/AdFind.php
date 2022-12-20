@@ -29,7 +29,7 @@ class AdFind
     private ?string $fur = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $color = null;
+    private ?array $color = null;
 
     #[ORM\Column(length: 255)]
     private ?string $dress = null;
@@ -37,8 +37,8 @@ class AdFind
     #[ORM\Column(length: 255)]
     private ?string $race = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $number = null;
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $number = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
@@ -58,6 +58,8 @@ class AdFind
     #[ORM\ManyToOne(inversedBy: 'adFinds')]
     private ?User $user_fk = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $isVerified = false;
     #[ORM\OneToMany(mappedBy: 'adFind_fk', targetEntity: CommentFind::class)]
     private Collection $commentFinds;
 
@@ -123,12 +125,12 @@ class AdFind
         return $this;
     }
 
-    public function getColor(): ?string
+    public function getColor(): ?array
     {
         return $this->color;
     }
 
-    public function setColor(string $color): self
+    public function setColor(array $color): self
     {
         $this->color = $color;
 
@@ -159,12 +161,12 @@ class AdFind
         return $this;
     }
 
-    public function getNumber(): ?int
+    public function getNumber(): ?string
     {
         return $this->number;
     }
 
-    public function setNumber(?int $number): self
+    public function setNumber(?string $number): self
     {
         $this->number = $number;
 
@@ -239,6 +241,18 @@ class AdFind
     public function setUserFk(?User $user_fk): self
     {
         $this->user_fk = $user_fk;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

@@ -1,7 +1,139 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Anim'Nord - {% endblock %}
+{% block title %}Anim'Nord - Perdus{% endblock %}
 
 {% block body %}
-    {{ form(form) }}
+    <main class="width_80 flexColumn">
+        <h1 class="title colorWhite flexCenter"> Chiens et chats perdus</h1>
+        <button id="filterCategories" class="buttonEnter colorWhite">Filtrer <i class="fas fa-sliders-h"></i></button>
+        <div class="flexRow">
+            <div id="containerLostAd">
+                <div class="flexCenter margin_15_0">
+{#                    <?php#}
+{#                            if($nb_resultats > 1) {?>#}
+{#                    <p class="colorBlue">Résultat de votre recherche : <span class="bold colorRed"><?=$nb_resultats?> résultats trouvés.</span></p>#}
+{#                    <?php#}
+{#                            }#}
+{#                            else { ?>#}
+{#                    <p class="colorBlue">Résultat de votre recherche : <span class="bold colorRed"><?=$nb_resultats?> résultat trouvé.</span></p>#}
+{#                    <?php#}
+{#                            } ?>#}
+                </div>
+                {% if ad_lost != [] %}
+                    {% for ad in ad_lost %}
+                    <a href='' class='post postTransform flexRow flexCenter colorGrey'>
+                        <div class='width_30'>
+                            {% if ad.picture == null or ad.picture == "" %}
+                                {% if ad.animal == "Chien" %}
+                                    <img class='imagePet' src="{{asset('build/images/nonPhotoChien.png')}}" alt="Chien" >
+                                {% else %}
+                                    <img class='imagePet' src="{{asset('build/images/nonPhotoChat.png')}}" alt="Chat">
+                                {% endif %}
+                            {% else %}
+                                <img class='imagePet' src="{{asset('build/images/adLost/' ~ ad.picture)}}" alt="{{ ad.animal }}">
+                          {% endif %}
+                        </div>
+                        <div class='flexColumn width_70 postAnimals'>
+                            <p class='titlePet'>{{ ad.animal }} ({{ ad.sex }})</p>
+                            <p class='postDate colorBlue'>{{ ad.date |date("d/m/Y") }}</p>
+                            <p>Perdu le : <span class='colorBlue'>{{ ad.dateLost |date("d/m/Y") }}</span></p>
+                            <p>Perdu à : <span class='colorBlue'>{{ ad.city }}</span></p>
+                            <p>Nom : <span class="colorBlue">{{ ad.name }}</span></p>
+                            <p>Race : <span class='colorBlue'>{{ ad.race }}</span></p>
+                            {% if ad.number != null and ad.number != "" %}
+                                <p>Numéro du tatouage ou de la puce : <span class="colorBlue">{{ ad.number }}</span></p>
+                            {% endif %}
+                            <p>Taille: <span class='colorBlue'>{{ ad.size }}</span></p>
+                            <p>Poils: <span class='colorBlue'>{{ ad.fur }}</span></p>
+                            <p>Couleur(s) du pelage :</p>
+                            <ul id="color" class="colorBlue">
+                                {% for color in ad.color %}
+                                    <li>{{ color }}</li>
+                                {% endfor %}
+                            </ul>
+                            <p>Robe : <span class='colorBlue'>{{ ad.dress }}</span> </p>
+                            <p>Description : <span class='colorBlue'>{{ ad.description }}</span></p>
+                        </div>
+                    </a>
+                {% endfor %}
+                </div>
+            </div>
+       {% else %}
+{#        <div class="flexRow">#}
+{#            <div id="containerLostAd">#}
+{#                <div class="flexCenter flexColumn">#}
+{#                    <h2 class="colorRed margin_15_0">Pas de résultats !</h2>#}
+{#                    <a class="colorGrey underline" href="../index.php?controller=adlost"><i class="fas fa-hand-point-right"></i>#}
+{#                        Afficher tous les chiens et chats perdus <i class="fas fa-hand-point-left"></i></a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+           <p class="colorWhite margin_15_0 center categoriesAnimal">Il n'y a pas encore d'annonces !</p>
+        {% endif %}
+{#        <?php#}
+{#            }}#}
+{#        }#}
+{#        // if the user did not use the filter then we display all the ads#}
+{#        else { ?>#}
+{#        <div class="flexRow">#}
+{#            <?php#}
+{#                $situation = "Perdu le :";#}
+{#                $true = true;?>#}
+{#            <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/View/_Partials/formCategories.php";  ?>#}
+{#            <div id="containerLostAd">#}
+{#                <?php#}
+{#                    foreach ($var['ads'] as $ad) {#}
+{#                            $dateLost = new DateTime($ad->getDateLost());#}
+{#                $date = new DateTime($ad->getDate()); ?>#}
+{#                <a href='../index.php?controller=adlost&action=adComment&id=<?=$ad->getId() ?>&user=<?=$ad->getUserFk()->getId()?>&comment=commentLost' class='post postTransform flexRow flexCenter colorGrey'>#}
+{#                    <div class='width_30'>#}
+{#                        <?php#}
+{#                                if ($ad->getPicture() === null || $ad->getPicture() === "") {#}
+{#                        if ($ad->getAnimal() === "Chien") {?>#}
+{#                        <img class='imagePet' src='../assets/img/nonPhotoChien.png' alt="Chien" >#}
+{#                        <?php#}
+{#                                    }#}
+{#                                    else { ?>#}
+{#                        <img class='imagePet' src='../assets/img/nonPhotoChat.png' alt="Chat">#}
+{#                        <?php#}
+{#                                    }#}
+{#                                }#}
+{#                                else { ?>#}
+{#                        <img class='imagePet' src='../assets/img/adLost/<?=$ad->getPicture() ?>' alt="<?=$ad->getAnimal() ?>">#}
+{#                        <?php#}
+{#                                }#}
+{#                                ?>#}
+{#                    </div>#}
+{#                    <div class='flexColumn width_70 postAnimals'>#}
+{#                        <p class='titlePet'><?=$ad->getAnimal() ?> (<?=$ad->getSex()?>)</p>#}
+{#                        <p class='postDate colorBlue'><?=$date->format('d/m/Y') ?></p>#}
+{#                        <p>Perdu le : <span class='colorBlue'><?=$dateLost->format('d/m/Y') ?></span></p>#}
+{#                        <p>Perdu à : <span class='colorBlue'><?=$ad->getCity() ?></span></p>#}
+{#                        <p>Nom : <span class="colorBlue"><?=$ad->getName() ?></span></p>#}
+{#                        <p>Race : <span class='colorBlue'><?=$ad->getRace() ?></span></p>#}
+{#                        <?php#}
+{#                                if($ad->getNumber() !== null && $ad->getNumber() !== "") {?>#}
+{#                        <p>Numéro du tatouage ou de la puce : <span class="colorBlue"> <?=$ad->getNumber() ?></span></p>#}
+{#                        <?php#}
+{#                                }#}
+{#                                ?>#}
+{#                        <p>Taille: <span class='colorBlue'><?=$ad->getSize() ?></span></p>#}
+{#                        <p>Poils: <span class='colorBlue'><?=$ad->getFur() ?></span></p>#}
+{#                        <p>Couleur(s) du pelage : <span class='colorBlue'><?=$ad->getColor() ?></span></p>#}
+{#                        <p>Robe : <span class='colorBlue'><?=$ad->getDress() ?></span> </p>#}
+{#                        <p>Description : <span class='colorBlue'><?=$ad->getDescription() ?></span></p>#}
+{#                    </div>#}
+{#                </a>#}
+{#                <?php#}
+{#                    }#}
+{#                    if ($var['ads'] === []) {?>#}
+{#                <p class="colorWhite margin_15_0 center categoriesAnimal">Il n'y a pas encore d'annonces !</p>#}
+{#                <?php#}
+{#                    }#}
+{#                    ?>#}
+{#            </div>#}
+{#        </div>#}
+{#        <?php#}
+{#        } ?>#}
+    </main>
 {% endblock %}

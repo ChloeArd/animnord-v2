@@ -25,26 +25,27 @@ class AdLostType extends AbstractType
 
         $builder
             ->add('animal', ChoiceType::class, [
-                'label' => 'Animal :',
+                'label' => 'Animal : *',
                 'choices' => [
-                    'Mâle' => 'Mâle',
-                    'Femelle' => 'Femelle'
+                    'Chien' => 'Chien',
+                    'Chat' => 'Chat'
                 ],
                 'multiple' => false,
                 'expanded' => true
             ])
-            ->add('name', TextType::class, ['label' => "Nom :"])
+            ->add('name', TextType::class, ['label' => "Nom : *"])
             ->add('sex', ChoiceType::class, [
-                    'label' => 'Sexe :',
+                    'label' => 'Sexe : *',
                     'choices' => [
-                        'Chien' => 'Chien',
-                        'Chat' => 'Chat'
+                        'Mâle' => 'Mâle',
+                        'Femelle' => 'Femelle',
+                        'Inconnu' => 'Inconnu'
                     ],
                     'multiple' => false,
                     'expanded' => true
             ])
             ->add('size', ChoiceType::class, [
-                'label' => 'Taille :',
+                'label' => 'Taille : *',
                 'choices' => [
                     'Très petite' => 'Très petite',
                     'Petite' => 'Petite',
@@ -54,7 +55,7 @@ class AdLostType extends AbstractType
                 ]
             ])
             ->add('fur', ChoiceType::class, [
-                'label' => 'Poils :',
+                'label' => 'Poils : *',
                 'choices' => [
                     'Nu' => 'Nu',
                     'Courts' => 'Courts',
@@ -64,7 +65,7 @@ class AdLostType extends AbstractType
                 ]
             ])
             ->add('color', ChoiceType::class, [
-                'label' => 'Couleur(s) :',
+                'label' => 'Couleur(s) du pelage : *',
                 'choices' => [
                     'Noir' => 'Noir',
                     'Blanc' => 'Blanc',
@@ -74,10 +75,11 @@ class AdLostType extends AbstractType
                     'Roux' => 'Roux'
                 ],
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'required' => true,
             ])
             ->add('dress', ChoiceType::class, [
-                'label' => 'Robe :',
+                'label' => 'Robe : *',
                 'choices' => [
                     'Unie' => 'Unie',
                     'Tachetée' => 'Tachetée',
@@ -90,37 +92,34 @@ class AdLostType extends AbstractType
                 ]
             ])
             ->add('race', TextType::class, [
-                'label' => 'Race :',
-                ['attr' => ['placeholder' => 'Ex: berger allemand']]
+                'label' => 'Race : *',
+                'attr' => ['placeholder' => 'Ex: berger allemand'],
             ])
             ->add('number', TextType::class, [
                 'label' => 'Numéro du tatouage ou de la puce :',
-                ['attr' => ['placeholder' => "Ex : 123ABC"]]
+                'attr' => ['placeholder' => "Ex : 123ABC"],
+                'required' => false
             ])
-            ->add('description', TextareaType::class, ['label' => 'Description :'])
+            ->add('description', TextareaType::class, ['label' => 'Description : *'])
             ->add('date_lost', DateType::class, [
-                'label' => "Perdu le :",
-                'widget' => 'choice',
-                'day' => range(1, 31),
-                "month" => range(1, 12),
-                "years" => range((int) $date->modify("-2years")->format("Y"), (int) $date->format("Y"))
+                'label' => "Perdu le : *",
+                'widget' => 'single_text'
             ])
-            ->add('date', DateType::class, ['widget' => 'single_text'])
-            ->add('city', ChoiceType::class, [
-                'label' => 'Ville :',
-//                'choices' => [
-//
-//                ]
+            ->add('date', DateType::class, [
+                'label' => "Date : ",
+                'widget' => 'text',
+                'data' => $date
             ])
+            ->add('city', TextType::class, ['label' => 'Ville : *'])
             ->add('picture', FileType::class, [
-                'label' => 'Sélectionner une image à télécharger (PNG, JPEG, JPG) ',
+                'label' => 'Sélectionner une image à télécharger :',
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => ["image/png, image/jpeg, image/jpg"],
-                        'mimeTypesMessage' => 'Veuillez télécharger un document JPG, PNG, JPEG valide !',
+                        'mimeTypes' => ["image/*"],
+                        'mimeTypesMessage' => 'Veuillez télécharger un document de type image valide !',
                     ])
                 ],
+                "required" => false
             ])
             ->add('user_fk', EntityType::class, ['class' => User::class, "choice_label" => "id"])
             ->add('submit', SubmitType::class, ["label" => "Publier"])
