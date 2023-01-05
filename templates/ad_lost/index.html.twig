@@ -20,8 +20,8 @@
 {#                            } ?>#}
                 </div>
                 {% if ad_lost != [] %}
-                    {% for ad in ad_lost %}
-                    <a href='' class='post postTransform flexRow flexCenter colorGrey'>
+                    {% for ad in ad_lost |reverse%}
+                    <a href='{{ path("ad_lost_one", {id: ad.id}) }}' class='post postTransform flexRow flexCenter colorGrey'>
                         <div class='width_30'>
                             {% if ad.picture == null or ad.picture == "" %}
                                 {% if ad.animal == "Chien" %}

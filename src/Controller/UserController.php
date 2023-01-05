@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\ChangePasswordType;
 use App\Form\UserType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,6 +22,12 @@ class UserController extends AbstractController
     public function index(): Response
     {
         return $this->render('user/index.html.twig');
+    }
+
+     #[Route('/myAd', name: 'my_ad')]
+    public function myAd(): Response
+    {
+        return $this->render('user/myAd.html.twig');
     }
 
     #[Route('/account/update/{id<\d+>}', name: 'user_update_info')]

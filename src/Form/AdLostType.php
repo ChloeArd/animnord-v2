@@ -112,6 +112,7 @@ class AdLostType extends AbstractType
             ])
             ->add('city', TextType::class, ['label' => 'Ville : *'])
             ->add('picture', FileType::class, [
+                'data_class' => null,
                 'label' => 'Sélectionner une image à télécharger :',
                 'constraints' => [
                     new File([
