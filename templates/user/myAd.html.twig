@@ -38,8 +38,8 @@
                 {% if app.user.adLosts |length != 0 %}
                     <div id="containerLostAd" class="marginAuto">
                         {% for ad in app.user.adLosts %}
-                            <a class="colorBlack" href=""><i class="far fa-edit"></i></a>
-                            <a class="colorBlack" href=""><i class="far fa-trash-alt"></i></a>
+                            <a class="colorBlack" href="{{ path("adLost_edit", {id: ad.id}) }}"><i class="far fa-edit"></i></a>
+                            <a class="colorBlack" href="{{ path("adLost_delete", {id: ad.id}) }}"><i class="far fa-trash-alt"></i></a>
                             <a href="{{ path("ad_lost_one", {id: ad.id}) }}" class='post postTransform flexRow flexCenter colorGrey'>
                                 <div class='width_30'>
                                     {% if ad.picture == null or ad.picture == "" %}
