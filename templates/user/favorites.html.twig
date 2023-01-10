@@ -8,8 +8,6 @@
             <div id="buttonAccount" class="buttonEnter colorWhite flexCenter">Mon compte <i class="fas fa-caret-down"></i></div>
 
             <div class="flexColumn marginAuto width_70" id="menuAccountMobile">
-                <a href="{{ path('account') }}" class="colorGrey margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorGrey"></i>Mes informations</a>
-                <a href="{{ path('my_ad') }}" class="colorGrey margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorGrey"></i>Mes annonces</a>
                 <a href="{{ path('favorites') }}" class="colorGrey margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorGrey"></i>Mes favoris</a>
 
                 {% if is_granted('ROLE_ADMIN') %}
@@ -84,9 +82,8 @@
                     {% if app.user.favoriteFinds |length != 0 %}
                         <div id="containerLostAd" class="marginAuto">
                             {% for fav in app.user.favoriteFinds %}
-                                <a class="colorBlack" href="{{ path("delete_favorite_find", {id: fav.id}) }}"><i class="far fa-edit"></i></a>
-                                <a class="colorBlack" href="{{ path("ad_find_one", {id: fav.adFindFk.id}) }}"><i class="far fa-trash-alt"></i></a>
-                                <a href="" class='post postTransform flexRow flexCenter colorGrey'>
+                                <a href="{{ path("delete_favorite_find", {id: fav.id}) }}"><i class='fas fa-star star2 size20'></i></a>
+                                <a href="{{ path("ad_find_one", {id: fav.adFindFk.id}) }}" class='post postTransform flexRow flexCenter colorGrey'>
                                     <div class='width_30'>
                                         {% if fav.adFindFk.picture == null or fav.adFindFk.picture == "" %}
                                             {% if fav.adFindFk.animal == "Chien" %}
