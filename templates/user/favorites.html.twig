@@ -81,42 +81,42 @@
 
                 <div>
                     <h1 class="titleAccount">Mes favoris de chiens et de chats trouvés</h1>
-                    {% if app.user.adFinds |length != 0 %}
+                    {% if app.user.favoriteFinds |length != 0 %}
                         <div id="containerLostAd" class="marginAuto">
-                            {% for ad in app.user.adFinds %}
-                                <a class="colorBlack" href=""><i class="far fa-edit"></i></a>
-                                <a class="colorBlack" href=""><i class="far fa-trash-alt"></i></a>
+                            {% for fav in app.user.favoriteFinds %}
+                                <a class="colorBlack" href="{{ path("delete_favorite_find", {id: fav.id}) }}"><i class="far fa-edit"></i></a>
+                                <a class="colorBlack" href="{{ path("ad_find_one", {id: fav.adFindFk.id}) }}"><i class="far fa-trash-alt"></i></a>
                                 <a href="" class='post postTransform flexRow flexCenter colorGrey'>
                                     <div class='width_30'>
-                                        {% if ad.picture == null or ad.picture == "" %}
-                                            {% if ad.animal == "Chien" %}
+                                        {% if fav.adFindFk.picture == null or fav.adFindFk.picture == "" %}
+                                            {% if fav.adFindFk.animal == "Chien" %}
                                                 <img class='imagePet' src="{{asset('build/images/nonPhotoChien.png')}}" alt="Chien" >
                                             {% else %}
                                                 <img class='imagePet' src="{{asset('build/images/nonPhotoChat.png')}}" alt="Chat">
                                             {% endif %}
                                         {% else %}
-                                            <img class='imagePet' src="{{asset('build/images/adFind /' ~ ad.picture)}}" alt="{{ ad.animal }}">
+                                            <img class='imagePet' src="{{asset('build/images/adFind /' ~ fav.adFindFk.picture)}}" alt="{{ fav.adFindFk.animal }}">
                                         {% endif %}
                                     </div>
                                     <div class='flexColumn width_70 postAnimals'>
-                                        <p class='titlePet'>{{ ad.animal }} ({{ ad.sex }})</p>
-                                        <p class='postDate colorBlue'>{{ ad.date |date("d/m/Y") }}</p>
-                                        <p>Trouvé le : <span class='colorBlue'>{{ ad.dateLost |date("d/m/Y") }}</span></p>
-                                        <p>Trouvé à : <span class='colorBlue'>{{ ad.city }}</span></p>
-                                        <p>Race : <span class='colorBlue'>{{ ad.race }}</span></p>
-                                        {% if ad.number != null and ad.number != "" %}
-                                            <p>Numéro du tatouage ou de la puce : <span class="colorBlue">{{ ad.number }}</span></p>
+                                        <p class='titlePet'>{{ fav.adFindFk.animal }} ({{ fav.adFindFk.sex }})</p>
+                                        <p class='postDate colorBlue'>{{ fav.adFindFk.date |date("d/m/Y") }}</p>
+                                        <p>Trouvé le : <span class='colorBlue'>{{ fav.adFindFk.dateFind |date("d/m/Y") }}</span></p>
+                                        <p>Trouvé à : <span class='colorBlue'>{{ fav.adFindFk.city }}</span></p>
+                                        <p>Race : <span class='colorBlue'>{{ fav.adFindFk.race }}</span></p>
+                                        {% if fav.adFindFk.number != null and fav.adFindFk.number != "" %}
+                                            <p>Numéro du tatouage ou de la puce : <span class="colorBlue">{{ fav.adFindFk.number }}</span></p>
                                         {% endif %}
-                                        <p>Taille: <span class='colorBlue'>{{ ad.size }}</span></p>
-                                        <p>Poils: <span class='colorBlue'>{{ ad.fur }}</span></p>
+                                        <p>Taille: <span class='colorBlue'>{{ fav.adFindFk.size }}</span></p>
+                                        <p>Poils: <span class='colorBlue'>{{ fav.adFindFk.fur }}</span></p>
                                         <p>Couleur(s) du pelage :</p>
                                         <ul id="color" class="colorBlue">
-                                            {% for color in ad.color %}
+                                            {% for color in fav.adFindFk.color %}
                                                 <li>{{ color }}</li>
                                             {% endfor %}
                                         </ul>
-                                        <p>Robe : <span class='colorBlue'>{{ ad.dress }}</span> </p>
-                                        <p>Description : <span class='colorBlue'>{{ ad.description }}</span></p>
+                                        <p>Robe : <span class='colorBlue'>{{ fav.adFindFk.dress }}</span> </p>
+                                        <p>Description : <span class='colorBlue'>{{ fav.adFindFk.description }}</span></p>
                                     </div>
                                 </a>
                             {% endfor %}

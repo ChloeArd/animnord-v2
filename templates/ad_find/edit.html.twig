@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anim'Nord - Modifier une annonce {% endblock %}
+
+{% block body %}
+    <main class="width_80">
+        <h1 class="flexCenter title colorWhite">Modifier une annonce.</h1>
+        {{ form_start(form, {'attr': {
+            'class': 'flexColumn width_50'
+        }}) }}
+        <div class="flexRow align flexCenter">
+            <div class="circle flexCenter">
+                <span>1</span>
+            </div>
+            <p>Informations sur l'animal <i class="fas fa-paw"></i></p>
+        </div>
+        <div class="flexRow align">
+            {{ form_label(form.animal) }}
+            {{ form_widget(form.animal.0) }}
+            <div class="d-none">{{ form_label(form.animal.0, " ") }}</div>
+            <span class="margin_0_20"><i class="fas fa-dog"></i></span>
+            {{ form_widget(form.animal.1) }}
+            <div class="d-none">{{ form_label(form.animal.1, " ") }}</div>
+            <span class="margin_0_20"><i class="fas fa-cat"></i></span>
+
+            <small>{{ form_help(form.animal) }}</small>
+
+            <div class="form-error">
+                {{ form_errors(form.animal) }}
+            </div>
+        </div>
+        {{ form_label(form.sex) }}
+        <div class="categoriePet">
+            <div class="flexRow align">
+                {{ form_widget(form.sex.0) }}
+                {{ form_label(form.sex.0) }}
+            </div>
+            <div class="flexRow align">
+                {{ form_widget(form.sex.1) }}
+                {{ form_label(form.sex.1) }}
+            </div>
+            <div class="flexRow align">
+                {{ form_widget(form.sex.2) }}
+                {{ form_label(form.sex.2) }}
+            </div>
+
+            <small>{{ form_help(form.sex) }}</small>
+
+            <div class="form-error">
+                {{ form_errors(form.sex) }}
+            </div>
+        </div>
+        {{ form_row(form.size) }}
+        {{ form_row(form.fur) }}
+        {{ form_label(form.color) }}
+        <div class="categoriePet">
+            <div class="flexRow align">
+                {{ form_widget(form.color.0) }}
+                {{ form_label(form.color.0, " ", {'label_attr' : {
+                    "class" : "margin_0_20 borderBlack black"
+                }}) }}
+            </div>
+            <div class="flexRow align">
+                {{ form_widget(form.color.1) }}
+                {{ form_label(form.color.1, " ", {'label_attr' : {
+                    "class" : "margin_0_20 borderBlack"
+                }}) }}
+            </div>
+            <div class="flexRow align">
+                {{ form_widget(form.color.2) }}
+                {{ form_label(form.color.2, " ", {'label_attr' : {
+                    "class" : "margin_0_20 borderBlack brown"
+                }}) }}
+            </div>
+            <div class="flexRow align">
+                {{ form_widget(form.color.3) }}
+                {{ form_label(form.color.3, " ", {'label_attr' : {
+                    "class" : "margin_0_20 borderBlack grey"
+                }}) }}
+            </div>
+            <div class="flexRow align">
+                {{ form_widget(form.color.4) }}
+                {{ form_label(form.color.4, " ", {'label_attr' : {
+                    "class" : "margin_0_20 borderBlack beige"
+                }}) }}
+            </div>
+            <div class="flexRow align">
+                {{ form_widget(form.color.5) }}
+                {{ form_label(form.color.5, " ", {'label_attr' : {
+                    "class" : "margin_0_20 borderBlack orange"
+                }}) }}
+            </div>
+        </div>
+
+        <small>{{ form_help(form.color) }}</small>
+
+        <div class="form-error">
+            {{ form_errors(form.color) }}
+        </div>
+        {{ form_row(form.dress) }}
+        {{ form_row(form.race) }}
+        <div class="align flexRow">
+            {{ form_label(form.number)}}
+            <span class="size15 colorBlue required tooltip" data-text="Pour le chat : 3 chiffres + 3 lettres ou 3 lettres
+                + 3 chiffres. Pour le chien : 3 chiffres + 3 lettres ou 2 chiffres + 3 lettres + 3 chiffres. En général, le
+                tatouage est situé sur la face interne de l’oreille ou de la cuisse.">
+                <i class="fas fa-question-circle"></i>
+            </span>
+        </div>
+        {{ form_widget(form.number) }}
+
+        <small>{{ form_help(form.number) }}</small>
+
+        <div class="form-error">
+            {{ form_errors(form.number) }}
+        </div>
+
+        {{ form_row(form.description) }}
+        <div class="flexRow align flexCenter">
+            <div class="circle flexCenter">
+                <span>2</span>
+            </div>
+            <p>Date et lieu de sa disparition <i class="far fa-calendar-alt"></i><i class="fas fa-map-marker-alt"></i></p>
+        </div>
+        {{ form_row(form.date_find) }}
+        {{ form_row(form.city) }}
+        <div class="flexRow align flexCenter">
+            <div class="circle flexCenter">
+                <span>3</span>
+            </div>
+            <p>Importer une photo <i class="far fa-image"></i></p>
+        </div>
+
+        <div class="d-none">{{ form_row(form.date) }}</div>
+        {{ form_row(form.picture) }}
+        {{ form_row(form.submit) }}
+        {{ form_widget(form._token) }}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token("article-add") }}">
+        {{ form_end(form, {'render_rest': false}) }}
+    </main>
+
+{% endblock %}

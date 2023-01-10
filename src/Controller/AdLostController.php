@@ -172,7 +172,6 @@ class AdLostController extends AbstractController
             $this->addFlash("success", "L'annonce a bien été supprimée !");
             return $this->redirectToRoute("account");
         }
-
         return $this->redirectToRoute("home");
     }
 }
