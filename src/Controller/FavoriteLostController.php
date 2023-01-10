@@ -5,10 +5,7 @@ namespace App\Controller;
 use App\Entity\AdLost;
 use App\Entity\FavoriteLost;
 use App\Entity\User;
-use App\Repository\AdLostRepository;
-use App\Repository\CommentLostRepository;
 use App\Repository\FavoriteLostRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,16 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FavoriteLostController extends AbstractController
 {
-    #[Route('/favorite/lost', name: 'favoriteLost')]
-    public function index(): Response
-    {
-        return $this->render('favorite_lost/index.html.twig');
-    }
 
     #[Route('/favorite/lost/add/{user}/{adLost}', name: 'add_favorite_lost')]
     public function addFavorite(User $user, AdLost $adLost, EntityManagerInterface $entityManager, FavoriteLostRepository $favoriteLostRepository): Response
     {
-
         $favoriteView = $favoriteLostRepository->findBy(["user_fk" => $user->getId(), "adLost_fk" => $adLost->getId()]);
 
         if (!$favoriteView) {
@@ -45,7 +36,6 @@ class FavoriteLostController extends AbstractController
     #[Route('/favorite/lost/delete/{id}/', name: 'delete_favorite_lost')]
     public function deleteFavorite(FavoriteLost $favoriteLost, EntityManagerInterface $entityManager): Response
     {
-
         $entityManager->remove($favoriteLost);
         $entityManager->flush();
 

@@ -6,6 +6,8 @@
 parameters:
     picture_directory_lost: '%kernel.project_dir%/public/build/images/adLost'
     picture_directory_local_lost: '%kernel.project_dir%/assets/images/adLost'
+    picture_directory_find: '%kernel.project_dir%/public/build/images/adFind'
+    picture_directory_local_find: '%kernel.project_dir%/assets/images/adFind'
 
 services:
     # default configuration for services in *this* file

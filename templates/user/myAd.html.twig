@@ -10,7 +10,7 @@
             <div class="flexColumn marginAuto width_70" id="menuAccountMobile">
                 <a href="{{ path('account') }}" class="colorGrey margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorGrey"></i>Mes informations</a>
                 <a href="{{ path('my_ad') }}" class="colorGrey margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorGrey"></i>Mes annonces</a>
-                <a href="" class="colorGrey margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorGrey"></i>Mes favoris</a>
+                <a href="{{ path('favorites') }}" class="colorGrey margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorGrey"></i>Mes favoris</a>
 
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="" class="colorOrange margin_0_20 linkAccount"><i class="fas fa-chevron-circle-right colorOrange"></i>Gestion des utilisateurs</a>
@@ -23,7 +23,7 @@
                 <div class="separatorVertical"></div>
                 <a href="{{ path('my_ad') }}" class="colorBlue margin_0_20 linkAccount">Mes annonces</a>
                 <div class="separatorVertical"></div>
-                <a href="" class="colorBlue margin_0_20 linkAccount">Mes favoris</a>
+                <a href="{{ path('favorites') }}" class="colorBlue margin_0_20 linkAccount">Mes favoris</a>
                 <div class="separatorVertical"></div>
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="" class="colorOrange margin_0_20 linkAccount">Gestion des utilisateurs</a>

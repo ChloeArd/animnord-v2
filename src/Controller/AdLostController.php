@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\AdLost;
-use App\Entity\User;
 use App\Form\AdLostType;
 use App\Repository\AdLostRepository;
 use App\Repository\CommentLostRepository;
@@ -29,8 +28,6 @@ class AdLostController extends AbstractController
             'ad_lost' => $all,
         ]);
     }
-
-
 
     // add a ad lost
     /**
@@ -82,7 +79,7 @@ class AdLostController extends AbstractController
 
     // one ad lost
     #[Route('/ad/lost/{id}', name: 'ad_lost_one')]
-    public function oneAdLost(AdLost $adLost, AdLostRepository $repository, CommentLostRepository $commentLostRepository, FavoriteLostRepository $favoriteLostRepository): Response
+    public function oneAdLost(AdLost $adLost, CommentLostRepository $commentLostRepository, FavoriteLostRepository $favoriteLostRepository): Response
     {
         $comments = $commentLostRepository->findBy(['adLost_fk' => $adLost->getId()]);
         $favorite = $favoriteLostRepository->findBy(['adLost_fk' => $adLost->getId()]);
