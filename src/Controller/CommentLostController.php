@@ -43,7 +43,7 @@ class CommentLostController extends AbstractController
         return $this->render('comment_lost/add.html.twig', ['form' => $form->createView()]);
     }
 
-    #[Route('/comment/edit/{id}', name: 'adLost_comment_edit')]
+    #[Route('/ad/lost/comment/edit/{id}', name: 'adLost_comment_edit')]
     #[isGranted('IS_AUTHENTICATED_FULLY')]
     public function edit(CommentLost $commentLost, Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -69,7 +69,7 @@ class CommentLostController extends AbstractController
         return $this->render('comment_lost/edit.html.twig', ['form' => $form->createView()]);
     }
 
-    #[Route('/comment/delete/{id}', name: 'adLost_comment_archive')]
+    #[Route('/ad/lost/comment/delete/{id}', name: 'adLost_comment_archive')]
     #[isGranted('IS_AUTHENTICATED_FULLY')]
     public function archive(CommentLost $commentLost, EntityManagerInterface $entityManager): Response
     {
@@ -81,7 +81,7 @@ class CommentLostController extends AbstractController
     }
 
     #[isGranted('ROLE_ADMIN')]
-    #[Route('/comment/deleteAdmin/{id}/', name: 'adLost_comment_delete')]
+    #[Route('/ad/lost/comment/deleteAdmin/{id}/', name: 'adLost_comment_delete')]
         public function deleteFavorite(CommentLost $commentLost, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($commentLost);

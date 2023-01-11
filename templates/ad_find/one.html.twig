@@ -69,7 +69,7 @@
 
         <div class="flexRow width_80">
             {% if app.user %}
-                <a href="" class="buttonComment"> Ajouter un commentaire</a>
+                <a href="{{ path('adFind_comment', {adFind: ad.id}) }}" class="buttonComment"> Ajouter un commentaire</a>
             {% else %}
                 <a href="{{ path('login') }}" class="buttonComment"> Ajouter un commentaire</a>
                 <span class="colorGrey flexCenter size12">Tu dois te connecter pour ajouter un commentaire.</span>
@@ -80,20 +80,25 @@
             <h1 class='colorWhite margin_15_0 center categoriesAnimal width_100'>Commentaires</h1>
             {% if comments |length != 0 %}
                 {% for comment in comments |reverse%}
+                    {% if comment.archive == 0 %}
                     <div class="commentArticle">
                         {% if app.user %}
                             {% for role in app.user.roles %}
-                                {% if role == "ROLE_ADMIN" or role == "ROLE_MODERATOR" %}
+                                {% if role == "ROLE_ADMIN" or role == "ROLE_MODERATOR"%}
                                     {% if app.user.id == comment.userFk.id %}
-                                        <a href="" class="colorBlack" ><i class="far fa-edit"></i></a>
-                                        <a href="" class="colorBlack"><i class="far fa-trash-alt"></i></a>
+                                        <a href="{{ path('adFind_comment_edit', {id: comment.id}) }}" class="colorBlack" ><i class="far fa-edit"></i></a>
+                                        <a href="{{ path('adFind_comment_archive', {id: comment.id}) }}" class="colorBlack"><i class="far fa-trash-alt"></i></a>
                                     {% endif %}
+                                {% endif %}
+                                {% if role == "ROLE_ADMIN" %}
+                                    <a href="{{ path('adFind_comment_delete', {id: comment.id}) }}" class="colorBlack"><i class="fas fa-trash-alt"></i></a>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
                         <h3 class="margin_15_0">{{ comment.userFk.firstname}} {{ comment.userFk.lastname }} <span class='colorBlue size12'> - {{ comment.date |date("d/m/Y à H:i")}} </span></h3>
                         <p>{{ comment.content }}</p>
                     </div>
+                    {% endif %}
                 {% endfor %}
             {% else %}
                 <p class="colorGrey margin_15_0 flexCenter size20">Il n'y a pas encore de commentaires !</p>
