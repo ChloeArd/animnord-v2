@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\ChangePasswordType;
 use App\Form\UserType;
+use App\Repository\AdLostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -79,11 +80,12 @@ class UserController extends AbstractController
 
     // Delete a user by putting that he is no longer active
     #[Route('/account/delete/{id<\d+>}', name: 'user_delete')]
-    public function deleteUser(User $user, Request $request, EntityManagerInterface $entityManager): Response
+    public function deleteUser(User $user, Request $request, EntityManagerInterface $entityManager, AdLostRepository $adLostRepository): Response
     {
         if ($request->request->get("deleteUser")) {
             $user->setActive(0);
             $entityManager->flush();
+
             return $this->redirectToRoute("app_logout");
         }
         return $this->render('user/delete.html.twig');

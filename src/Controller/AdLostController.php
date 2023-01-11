@@ -78,11 +78,16 @@ class AdLostController extends AbstractController
     }
 
     // one ad lost
-    #[Route('/ad/lost/{id}', name: 'ad_lost_one')]
+    #[Route('/ad/lost/{id<\d+>}', name: 'ad_lost_one')]
     public function oneAdLost(AdLost $adLost, CommentLostRepository $commentLostRepository, FavoriteLostRepository $favoriteLostRepository): Response
     {
-        $comments = $commentLostRepository->findBy(['adLost_fk' => $adLost->getId()]);
-        $favorite = $favoriteLostRepository->findBy(['adLost_fk' => $adLost->getId()]);
+        if($adLost->getUserFk()->isActive() != 0) {
+            $comments = $commentLostRepository->findBy(['adLost_fk' => $adLost->getId()]);
+            $favorite = $favoriteLostRepository->findBy(['adLost_fk' => $adLost->getId()]);
+        }
+        else {
+            return $this->redirectToRoute("home");
+        }
 
         return $this->render('ad_lost/one.html.twig', [
             "ad" => $adLost,
@@ -93,7 +98,7 @@ class AdLostController extends AbstractController
 
 
     // edit a ad lost and update a picture or delete
-    #[Route('/ad/lost/edit/{id}', name: 'adLost_edit')]
+    #[Route('/ad/lost/edit/{id<\d+>}', name: 'adLost_edit')]
     #[isGranted('IS_AUTHENTICATED_FULLY')]
     public function edit(AdLost $adLost, Request $request, EntityManagerInterface $entityManager, UserRepository $repository): Response
     {
@@ -154,7 +159,7 @@ class AdLostController extends AbstractController
 
 
     // delete a ad lost and a picture
-    #[Route('/ad/lost/delete/{id}', name: 'adLost_delete')]
+    #[Route('/ad/lost/delete/{id<\d+>}', name: 'adLost_delete')]
     #[isGranted('IS_AUTHENTICATED_FULLY')]
     public function delete(AdLost $adLost, EntityManagerInterface $entityManager): Response
     {

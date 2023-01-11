@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CommentFindController extends AbstractController
 {
-    #[Route('/ad/find/{adFind}/comment', name: 'adFind_comment')]
+    #[Route('/ad/find/{adFind<\d+>}/comment', name: 'adFind_comment')]
     #[isGranted('IS_AUTHENTICATED_FULLY')]
     public function add(Request $request, AdFind $adFind, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
@@ -43,7 +43,7 @@ class CommentFindController extends AbstractController
         return $this->render('comment_find/add.html.twig', ['form' => $form->createView()]);
     }
 
-    #[Route('/ad/find/comment/edit/{id}', name: 'adFind_comment_edit')]
+    #[Route('/ad/find/comment/edit/{id<\d+>}', name: 'adFind_comment_edit')]
     #[isGranted('IS_AUTHENTICATED_FULLY')]
     public function edit(CommentFind $commentFind, Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -69,7 +69,7 @@ class CommentFindController extends AbstractController
         return $this->render('comment_find/edit.html.twig', ['form' => $form->createView()]);
     }
 
-    #[Route('/ad/find/comment/delete/{id}', name: 'adFind_comment_archive')]
+    #[Route('/ad/find/comment/delete/{id<\d+>}', name: 'adFind_comment_archive')]
     #[isGranted('IS_AUTHENTICATED_FULLY')]
     public function archive(CommentFind $commentFind, EntityManagerInterface $entityManager): Response
     {
@@ -81,7 +81,7 @@ class CommentFindController extends AbstractController
     }
 
     #[isGranted('ROLE_ADMIN')]
-    #[Route('/ad/find/comment/deleteAdmin/{id}/', name: 'adFind_comment_delete')]
+    #[Route('/ad/find/comment/deleteAdmin/{id<\d+>}/', name: 'adFind_comment_delete')]
     public function deleteFavorite(CommentFind $commentFind, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($commentFind);

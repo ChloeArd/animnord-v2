@@ -37,7 +37,7 @@
                 <h1 class="titleAccount">Mes annonces de chiens et de chats perdus</h1>
                 {% if app.user.adLosts |length != 0 %}
                     <div id="containerLostAd" class="marginAuto">
-                        {% for ad in app.user.adLosts %}
+                        {% for ad in app.user.adLosts |reverse %}
                             <a class="colorBlack" href="{{ path("adLost_edit", {id: ad.id}) }}"><i class="far fa-edit"></i></a>
                             <a class="colorBlack" href="{{ path("adLost_delete", {id: ad.id}) }}"><i class="far fa-trash-alt"></i></a>
                             <a href="{{ path("ad_lost_one", {id: ad.id}) }}" class='post postTransform flexRow flexCenter colorGrey'>
@@ -53,6 +53,9 @@
                                     {% endif %}
                                 </div>
                                 <div class='flexColumn width_70 postAnimals'>
+                                    {% if ad.isVerified != 1 %}
+                                        <p class="colorGrey">(En vérification)</p>
+                                    {% endif %}
                                     <p class='titlePet'>{{ ad.animal }} ({{ ad.sex }})</p>
                                     <p class='postDate colorBlue'>{{ ad.date |date("d/m/Y") }}</p>
                                     <p>Perdu le : <span class='colorBlue'>{{ ad.dateLost |date("d/m/Y") }}</span></p>
@@ -84,7 +87,7 @@
                     <h1 class="titleAccount">Mes annonces de chiens et de chats trouvés</h1>
                     {% if app.user.adFinds |length != 0 %}
                     <div id="containerLostAd" class="marginAuto">
-                      {% for ad in app.user.adFinds %}
+                      {% for ad in app.user.adFinds |reverse %}
                         <a class="colorBlack" href="{{ path("adFind_edit", {id: ad.id}) }}"><i class="far fa-edit"></i></a>
                         <a class="colorBlack" href="{{ path("adFind_delete", {id: ad.id}) }}"><i class="far fa-trash-alt"></i></a>
                         <a href="{{ path("ad_find_one", {id: ad.id}) }}" class='post postTransform flexRow flexCenter colorGrey'>
@@ -100,6 +103,9 @@
                                 {% endif %}
                             </div>
                             <div class='flexColumn width_70 postAnimals'>
+                                {% if ad.isVerified != 1 %}
+                                    <p class="colorGrey">(En vérification)</p>
+                                {% endif %}
                                 <p class='titlePet'>{{ ad.animal }} ({{ ad.sex }})</p>
                                 <p class='postDate colorBlue'>{{ ad.date |date("d/m/Y") }}</p>
                                 <p>Trouvé le : <span class='colorBlue'>{{ ad.dateFind |date("d/m/Y") }}</span></p>

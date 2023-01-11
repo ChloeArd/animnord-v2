@@ -27,21 +27,25 @@
             <h2 class="center title2">Annonces récentes de chiens et de chats perdus</h2>
             <div class="width_80 flexRow flexCenter flexWrap">
                 {% if adLost %}
-                    {% for ad in adLost %}
-                        <a href='{{ path("ad_find_one", {id: ad.id}) }}' class='containerRecentPost flexColumn flexCenter radius10'>
-                            {% if ad.picture == null or ad.picture == ""%}
-                                {% if ad.animal == "Chien" %}
-                                    <img class='imagePet' src="{{asset('build/images/nonPhotoChien.png')}}" alt="Chien" >
-                                {% else %}
-                                    <img class='imagePet' src="{{asset('build/images/nonPhotoChat.png')}}" alt="Chat">
-                                {% endif %}
-                            {% else %}
-                                <img class='imagePet' src="{{asset('build/images/adLost/' ~ ad.picture)}}" alt="{{ ad.animal }}">
+                    {% for ad in adLost |reverse%}
+                        {% if ad.userFk.active != 0 %}
+                            {% if ad.isVerified != 0 %}
+                                <a href='{{ path("ad_find_one", {id: ad.id}) }}' class='containerRecentPost flexColumn flexCenter radius10'>
+                                    {% if ad.picture == null or ad.picture == ""%}
+                                        {% if ad.animal == "Chien" %}
+                                            <img class='imagePet' src="{{asset('build/images/nonPhotoChien.png')}}" alt="Chien" >
+                                        {% else %}
+                                            <img class='imagePet' src="{{asset('build/images/nonPhotoChat.png')}}" alt="Chat">
+                                        {% endif %}
+                                    {% else %}
+                                        <img class='imagePet' src="{{asset('build/images/adLost/' ~ ad.picture)}}" alt="{{ ad.animal }}">
+                                    {% endif %}
+                                    <p class='margin8'>{{ ad.race }}</p>
+                                    <p class='margin8'><i class="fas fa-calendar-day"></i>{{ ad.dateLost |date('d/m/Y') }}</p>
+                                    <p class='location'><i class='fas fa-search-location'></i>{{ ad.city }}</p>
+                                </a>
                             {% endif %}
-                            <p class='margin8'>{{ ad.race }}</p>
-                            <p class='margin8'><i class="fas fa-calendar-day"></i>{{ ad.dateLost |date('d/m/Y') }}</p>
-                            <p class='location'><i class='fas fa-search-location'></i>{{ ad.city }}</p>
-                        </a>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             </div>
@@ -51,21 +55,25 @@
             <h2 class="center title2">Annonces récentes de chiens et de chats trouvés</h2>
             <div class="width_80 flexRow flexCenter flexWrap">
                 {% if adFind %}
-                    {% for ad in adFind %}
-                        <a href='{{ path("ad_find_one", {id: ad.id}) }}' class='containerRecentPost flexColumn flexCenter radius10'>
-                            {% if ad.picture == null or ad.picture == ""%}
-                                {% if ad.animal == "Chien" %}
-                                    <img class='imagePet' src="{{asset('build/images/nonPhotoChien.png')}}" alt="Chien" >
-                                {% else %}
-                                    <img class='imagePet' src="{{asset('build/images/nonPhotoChat.png')}}" alt="Chat">
-                                {% endif %}
-                            {% else %}
-                                <img class='imagePet' src="{{asset('build/images/adFind/' ~ ad.picture)}}" alt="{{ ad.animal }}">
+                    {% for ad in adFind |reverse%}
+                        {% if ad.userFk.active != 0 %}
+                            {% if ad.isVerified != 0 %}
+                                <a href='{{ path("ad_find_one", {id: ad.id}) }}' class='containerRecentPost flexColumn flexCenter radius10'>
+                                    {% if ad.picture == null or ad.picture == ""%}
+                                        {% if ad.animal == "Chien" %}
+                                            <img class='imagePet' src="{{asset('build/images/nonPhotoChien.png')}}" alt="Chien" >
+                                        {% else %}
+                                            <img class='imagePet' src="{{asset('build/images/nonPhotoChat.png')}}" alt="Chat">
+                                        {% endif %}
+                                    {% else %}
+                                        <img class='imagePet' src="{{asset('build/images/adFind/' ~ ad.picture)}}" alt="{{ ad.animal }}">
+                                    {% endif %}
+                                    <p class='margin8'>{{ ad.race }}</p>
+                                    <p class='margin8'><i class="fas fa-calendar-day"></i>{{ ad.dateFind |date('d/m/Y') }}</p>
+                                    <p class='location'><i class='fas fa-search-location'></i>{{ ad.city }}</p>
+                                </a>
                             {% endif %}
-                            <p class='margin8'>{{ ad.race }}</p>
-                            <p class='margin8'><i class="fas fa-calendar-day"></i>{{ ad.dateFind |date('d/m/Y') }}</p>
-                            <p class='location'><i class='fas fa-search-location'></i>{{ ad.city }}</p>
-                        </a>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             </div>

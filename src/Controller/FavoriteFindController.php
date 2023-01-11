@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FavoriteFindController extends AbstractController
 {
-    #[Route('/favorite/find/add/{user}/{adFind}', name: 'add_favorite_find')]
+    #[Route('/favorite/find/add/{user<\d+>}/{adFind<\d+>}', name: 'add_favorite_find')]
     public function addFavorite(User $user, AdFind $adFind, EntityManagerInterface $entityManager, FavoriteFindRepository $favoriteFindRepository): Response
     {
         $favoriteView = $favoriteFindRepository->findBy(["user_fk" => $user->getId(), "adFind_fk" => $adFind->getId()]);
@@ -35,7 +35,7 @@ class FavoriteFindController extends AbstractController
         return $this->redirectToRoute("ad_lost_one", ["id" => $adFind->getId()]);
     }
 
-    #[Route('/favorite/find/delete/{id}/', name: 'delete_favorite_find')]
+    #[Route('/favorite/find/delete/{id<\d+>}', name: 'delete_favorite_find')]
     public function deleteFavorite(FavoriteFind $favoriteFind, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($favoriteFind);

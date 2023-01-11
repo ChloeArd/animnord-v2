@@ -4,106 +4,110 @@
 
 {% block body %}
     <main>
-        <div id="containerLostAd" class="marginAuto">
-            {% if app.user %}
-                {% if favorite != [] %}
-                    {% for fav in favorite %}
-                        {% if fav.userFk.id == app.user.id %}
-                            <a href="{{ path("delete_favorite_lost", {id: fav.id}) }}"><i class='fas fa-star star2 size20'></i></a>
-                        {% endif %}
-                    {% endfor %}
-                {% else %}
-                    <a href="{{ path("add_favorite_lost", {user: app.user.id, adLost: ad.id}) }}"><i class='far fa-star star2 size20'></i></a>
-                {% endif %}
-            {% endif %}
-
-            <div class='post flexColumn flexCenter colorGr9ey'>
-                <h1 class='colorWhite margin_15_0 center categoriesAnimal width_100'>{{ ad.animal }} perdu : {{ ad.name }}</h1>
-                <div class='width_70 margin_15_0 flexCenter flexColumn'>
-                    {% if ad.picture == null or ad.picture == "" %}
-                        {% if ad.animal == "Chien" %}
-                            <img class='imagePet' src="{{asset('build/images/nonPhotoChien.png')}}" alt="Chien" >
-                        {% else %}
-                            <img class='imagePet' src="{{asset('build/images/nonPhotoChat.png')}}" alt="Chat">
-                        {% endif %}
-                    {% else %}
-                        <img class='imagePet' src="{{asset('build/images/adLost/' ~ ad.picture)}}" alt="{{ ad.animal }}">
-                    {% endif %}
-                    <p class='colorGrey size12'>Date de la publication : <span class="colorBlue">{{ ad.date |date('d/m/Y') }}</span></p>
+        {% if ad.userFk.active != 0 %}
+            {% if ad.isVerified != 0 %}
+                <div id="containerLostAd" class="marginAuto">
                     {% if app.user %}
-                        {% for role in app.user.roles %}
-                            {% if role == "ROLE_ADMIN" or role == "ROLE_MODERATOR" %}
-                                <a class="colorWhite position1 edit1 size20" href="{{ path("adLost_edit", {id: ad.id}) }}"><i class="far fa-edit buttonGreen"></i></a>
-                                <a class="colorWhite position1 delete1 size20" href="{{ path("adLost_delete", {id: ad.id}) }}"><i class="far fa-trash-alt buttonGreen"></i></a>
+                        {% if favorite != [] %}
+                            {% for fav in favorite %}
+                                {% if fav.userFk.id == app.user.id %}
+                                    <a href="{{ path("delete_favorite_lost", {id: fav.id}) }}"><i class='fas fa-star star2 size20'></i></a>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <a href="{{ path("add_favorite_lost", {user: app.user.id, adLost: ad.id}) }}"><i class='far fa-star star2 size20'></i></a>
+                        {% endif %}
+                    {% endif %}
+
+                    <div class='post flexColumn flexCenter colorGr9ey'>
+                        <h1 class='colorWhite margin_15_0 center categoriesAnimal width_100'>{{ ad.animal }} perdu : {{ ad.name }}</h1>
+                        <div class='width_70 margin_15_0 flexCenter flexColumn'>
+                            {% if ad.picture == null or ad.picture == "" %}
+                                {% if ad.animal == "Chien" %}
+                                    <img class='imagePet' src="{{asset('build/images/nonPhotoChien.png')}}" alt="Chien" >
+                                {% else %}
+                                    <img class='imagePet' src="{{asset('build/images/nonPhotoChat.png')}}" alt="Chat">
+                                {% endif %}
+                            {% else %}
+                                <img class='imagePet' src="{{asset('build/images/adLost/' ~ ad.picture)}}" alt="{{ ad.animal }}">
                             {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class='flexColumn width_70 postAnimals table'>
-                    <p>Sexe : <span class="colorBlue">{{ ad.sex }}</span></p>
-                    <p>Perdu le : <span class='colorBlue'>{{ ad.dateLost |date('d/m/Y') }}</span></p>
-                    <p>Perdu à : <span class='colorBlue'>{{ ad.city }}</span></p>
-                    <p>Nom : <span class="colorBlue">{{ ad.name }}</span></p>
-                    <p>Race : <span class='colorBlue'>{{ ad.race }}</span></p>
-                    {% if ad.number != null and ad.number != "" %}
-                        <p>Numéro du tatouage ou de la puce : <span class="colorBlue">{{ ad.number }}</span></p>
-                    {% endif %}
-                    <p>Taille: <span class='colorBlue'>{{ ad.size }}</span></p>
-                    <p>Poils: <span class='colorBlue'>{{ ad.fur }}</span></p>
-                    <p>Couleur(s) du pelage :</p>
-                    <ul id="color" class="colorBlue">
-                        {% for color in ad.color %}
-                            <li>{{ color }}</li>
-                        {% endfor %}
-                    </ul>
-                    <p>Robe : <span class='colorBlue'>{{ ad.dress }}</span> </p>
-                    <p>Description : <span class='colorBlue'>{{ ad.description }}</span></p>
-                </div>
-                <div class="userAd flexColumn">
-                    <p class="size20 center margin8">Vous l'avez trouvés ?</p>
-                    <p>Veuillez contacter : <span class="size18 bold">{{ ad.userFk.firstname }} {{ ad.userFk.lastname }}</span></p>
-                    <a href="mailto:{{ ad.userFk.email }}" class="buttonWhite margin8 colorRed"><i class="far fa-envelope"></i>Envoyer un E-mail</a>
-                    <a href="tel:+{{ ad.userFk.phone }}" class="buttonWhite margin8 colorRed "><i class="fas fa-phone-alt"></i>Contacter par téléphone : {{ ad.userFk.phone  }}</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="flexRow width_80">
-            {% if app.user %}
-                <a href="{{ path('adLost_comment', {adLost: ad.id}) }}" class="buttonComment"> Ajouter un commentaire</a>
-            {% else %}
-                <a href="{{ path('login') }}" class="buttonComment"> Ajouter un commentaire</a>
-                <span class="colorGrey flexCenter size12">Tu dois te connecter pour ajouter un commentaire.</span>
-            {% endif %}
-        </div>
-
-        <div id="comments" class="width_80">
-            <h1 class='colorWhite margin_15_0 center categoriesAnimal width_100'>Commentaires</h1>
-            {% if comments |length != 0 %}
-                {% for comment in comments |reverse%}
-                    {% if comment.archive == 0 %}
-                        <div class="commentArticle">
+                            <p class='colorGrey size12'>Date de la publication : <span class="colorBlue">{{ ad.date |date('d/m/Y') }}</span></p>
                             {% if app.user %}
                                 {% for role in app.user.roles %}
-                                    {% if role == "ROLE_ADMIN" or role == "ROLE_MODERATOR"%}
-                                        {% if app.user.id == comment.userFk.id %}
-                                            <a href="{{ path('adLost_comment_edit', {id: comment.id}) }}" class="colorBlack" ><i class="far fa-edit"></i></a>
-                                            <a href="{{ path('adLost_comment_archive', {id: comment.id}) }}" class="colorBlack"><i class="far fa-trash-alt"></i></a>
-                                        {% endif %}
-                                    {% endif %}
-                                    {% if role == "ROLE_ADMIN" %}
-                                        <a href="{{ path('adLost_comment_delete', {id: comment.id}) }}" class="colorBlack"><i class="fas fa-trash-alt"></i></a>
+                                    {% if role == "ROLE_ADMIN" or role == "ROLE_MODERATOR" %}
+                                        <a class="colorWhite position1 edit1 size20" href="{{ path("adLost_edit", {id: ad.id}) }}"><i class="far fa-edit buttonGreen"></i></a>
+                                        <a class="colorWhite position1 delete1 size20" href="{{ path("adLost_delete", {id: ad.id}) }}"><i class="far fa-trash-alt buttonGreen"></i></a>
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}
-                            <h3 class="margin_15_0">{{ comment.userFk.firstname}} {{ comment.userFk.lastname }} <span class='colorBlue size12'> - {{ comment.date |date("d/m/Y à H:i")}} </span></h3>
-                            <p>{{ comment.content }}</p>
                         </div>
+                        <div class='flexColumn width_70 postAnimals table'>
+                            <p>Sexe : <span class="colorBlue">{{ ad.sex }}</span></p>
+                            <p>Perdu le : <span class='colorBlue'>{{ ad.dateLost |date('d/m/Y') }}</span></p>
+                            <p>Perdu à : <span class='colorBlue'>{{ ad.city }}</span></p>
+                            <p>Nom : <span class="colorBlue">{{ ad.name }}</span></p>
+                            <p>Race : <span class='colorBlue'>{{ ad.race }}</span></p>
+                            {% if ad.number != null and ad.number != "" %}
+                                <p>Numéro du tatouage ou de la puce : <span class="colorBlue">{{ ad.number }}</span></p>
+                            {% endif %}
+                            <p>Taille: <span class='colorBlue'>{{ ad.size }}</span></p>
+                            <p>Poils: <span class='colorBlue'>{{ ad.fur }}</span></p>
+                            <p>Couleur(s) du pelage :</p>
+                            <ul id="color" class="colorBlue">
+                                {% for color in ad.color %}
+                                    <li>{{ color }}</li>
+                                {% endfor %}
+                            </ul>
+                            <p>Robe : <span class='colorBlue'>{{ ad.dress }}</span> </p>
+                            <p>Description : <span class='colorBlue'>{{ ad.description }}</span></p>
+                        </div>
+                        <div class="userAd flexColumn">
+                            <p class="size20 center margin8">Vous l'avez trouvés ?</p>
+                            <p>Veuillez contacter : <span class="size18 bold">{{ ad.userFk.firstname }} {{ ad.userFk.lastname }}</span></p>
+                            <a href="mailto:{{ ad.userFk.email }}" class="buttonWhite margin8 colorRed"><i class="far fa-envelope"></i>Envoyer un E-mail</a>
+                            <a href="tel:+{{ ad.userFk.phone }}" class="buttonWhite margin8 colorRed "><i class="fas fa-phone-alt"></i>Contacter par téléphone : {{ ad.userFk.phone  }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flexRow width_80">
+                    {% if app.user %}
+                        <a href="{{ path('adLost_comment', {adLost: ad.id}) }}" class="buttonComment"> Ajouter un commentaire</a>
+                    {% else %}
+                        <a href="{{ path('login') }}" class="buttonComment"> Ajouter un commentaire</a>
+                        <span class="colorGrey flexCenter size12">Tu dois te connecter pour ajouter un commentaire.</span>
                     {% endif %}
-                {% endfor %}
-            {% else %}
-                <p class="colorGrey margin_15_0 flexCenter size20">Il n'y a pas encore de commentaires !</p>
+                </div>
+
+                <div id="comments" class="width_80">
+                    <h1 class='colorWhite margin_15_0 center categoriesAnimal width_100'>Commentaires</h1>
+                    {% if comments |length != 0 %}
+                        {% for comment in comments |reverse%}
+                            {% if comment.archive == 0 %}
+                                <div class="commentArticle">
+                                    {% if app.user %}
+                                        {% for role in app.user.roles %}
+                                            {% if role == "ROLE_ADMIN" or role == "ROLE_MODERATOR"%}
+                                                {% if app.user.id == comment.userFk.id %}
+                                                    <a href="{{ path('adLost_comment_edit', {id: comment.id}) }}" class="colorBlack" ><i class="far fa-edit"></i></a>
+                                                    <a href="{{ path('adLost_comment_archive', {id: comment.id}) }}" class="colorBlack"><i class="far fa-trash-alt"></i></a>
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if role == "ROLE_ADMIN" %}
+                                                <a href="{{ path('adLost_comment_delete', {id: comment.id}) }}" class="colorBlack"><i class="fas fa-trash-alt"></i></a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                    <h3 class="margin_15_0">{{ comment.userFk.firstname}} {{ comment.userFk.lastname }} <span class='colorBlue size12'> - {{ comment.date |date("d/m/Y à H:i")}} </span></h3>
+                                    <p>{{ comment.content }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <p class="colorGrey margin_15_0 flexCenter size20">Il n'y a pas encore de commentaires !</p>
+                    {% endif %}
+                </div>
             {% endif %}
-        </div>
+        {% endif %}
     </main>
 {% endblock %}

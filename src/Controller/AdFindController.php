@@ -71,12 +71,17 @@ class AdFindController extends AbstractController
     }
 
     // one ad find
-    #[Route('/ad/find/{id}', name: 'ad_find_one')]
+    #[Route('/ad/find/{id<\d+>}', name: 'ad_find_one')]
     public function oneAdLost(AdFind $adFind, CommentFindRepository $commentFindRepository, FavoriteFindRepository $favoriteFindRepository): Response
     {
-        $comments = $commentFindRepository->findBy(['adFind_fk' => $adFind->getId()]);
-        $favorite = $favoriteFindRepository->findBy(['adFind_fk' => $adFind->getId()]);
+        if($adFind->getUserFk()->isActive() != 0) {
+            $comments = $commentFindRepository->findBy(['adFind_fk' => $adFind->getId()]);
+            $favorite = $favoriteFindRepository->findBy(['adFind_fk' => $adFind->getId()]);
+        }
+        else {
+            return $this->redirectToRoute("home");
 
+        }
         return $this->render('ad_find/one.html.twig', [
             "ad" => $adFind,
             "comments" => $comments,
@@ -85,7 +90,7 @@ class AdFindController extends AbstractController
     }
 
     // edit a ad find and update a picture or delete
-    #[Route('/ad/find/edit/{id}', name: 'adFind_edit')]
+    #[Route('/ad/find/edit/{id<\d+>}', name: 'adFind_edit')]
     #[isGranted('IS_AUTHENTICATED_FULLY')]
     public function edit(AdFind $adFind, Request $request, EntityManagerInterface $entityManager, UserRepository $repository): Response
     {
@@ -145,7 +150,7 @@ class AdFindController extends AbstractController
     }
 
     // delete a ad find and a picture
-    #[Route('/ad/find/delete/{id}', name: 'adFind_delete')]
+    #[Route('/ad/find/delete/{id<\d+>}', name: 'adFind_delete')]
     #[isGranted('IS_AUTHENTICATED_FULLY')]
     public function delete(AdFind $adFind, EntityManagerInterface $entityManager): Response
     {
