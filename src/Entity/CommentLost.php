@@ -26,6 +26,9 @@ class CommentLost
     #[ORM\ManyToOne(inversedBy: 'commentLosts')]
     private ?User $user_fk = null;
 
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private ?int $archive = 0; // false
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,25 @@ class CommentLost
     public function setUserFk(?User $user_fk): self
     {
         $this->user_fk = $user_fk;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getArchive(): ?int
+    {
+        return $this->archive;
+    }
+
+    /**
+     * @param int|null $archive
+     * @return CommentLost
+     */
+    public function setArchive(?int $archive): self
+    {
+        $this->archive = $archive;
 
         return $this;
     }

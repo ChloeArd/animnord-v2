@@ -28,9 +28,7 @@ class FavoriteLostController extends AbstractController
             $entityManager->persist($favoriteLost);
             $entityManager->flush();
         }
-
-        $id = $adLost->getId();
-        return $this->redirect("/ad/lost/$id");
+        return $this->redirectToRoute("ad_lost_one", ["id" => $adLost->getId()]);
     }
 
     #[Route('/favorite/lost/delete/{id}/', name: 'delete_favorite_lost')]
@@ -38,8 +36,6 @@ class FavoriteLostController extends AbstractController
     {
         $entityManager->remove($favoriteLost);
         $entityManager->flush();
-
-        $id = $favoriteLost->getAdLostFk()->getId();
-        return $this->redirect("/ad/lost/$id");
+        return $this->redirectToRoute("ad_lost_one", ["id" => $favoriteLost->getAdLostFk()->getId()]);
     }
 }

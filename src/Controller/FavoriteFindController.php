@@ -32,7 +32,7 @@ class FavoriteFindController extends AbstractController
         }
 
         $id = $adFind->getId();
-        return $this->redirect("/ad/find/$id");
+        return $this->redirectToRoute("ad_lost_one", ["id" => $adFind->getId()]);
     }
 
     #[Route('/favorite/find/delete/{id}/', name: 'delete_favorite_find')]
@@ -41,7 +41,7 @@ class FavoriteFindController extends AbstractController
         $entityManager->remove($favoriteFind);
         $entityManager->flush();
 
-        $id = $favoriteFind->getAdFindFk()->getId();
-        return $this->redirect("/ad/find/$id");
+        return $this->redirectToRoute("ad_lost_one", ["id" => $favoriteFind->getAdFindFk()->getId()]);
+
     }
 }

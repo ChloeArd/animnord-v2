@@ -7,6 +7,7 @@ use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -21,6 +22,7 @@ class AdFindType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        date_default_timezone_set('Europe/Paris');
         $date = new \DateTime();
 
         $builder
@@ -104,7 +106,7 @@ class AdFindType extends AbstractType
                 'label' => "Trouvé le : *",
                 'widget' => 'single_text'
             ])
-            ->add('date', DateType::class, [
+            ->add('date', DateTimeType::class, [
                 'label' => "Date : ",
                 'widget' => 'text',
                 'data' => $date

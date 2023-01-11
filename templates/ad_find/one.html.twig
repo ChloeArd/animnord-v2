@@ -5,18 +5,17 @@
 {% block body %}
     <main>
         <div id="containerLostAd" class="marginAuto">
-            {# AJOUT FAVORIS #}
-
-            {% if favorite != [] %}
-                {% for fav in favorite %}
-                    {% if fav.userFk.id == app.user.id %}
-                        <a href="{{ path("delete_favorite_find", {id: fav.id}) }}"><i class='fas fa-star star2 size20'></i></a>
-                    {% endif %}
-                {% endfor %}
-            {% else %}
-                <a href="{{ path("add_favorite_find", {user: app.user.id, adFind: ad.id}) }}"><i class='far fa-star star2 size20'></i></a>
+            {% if app.user %}
+                {% if favorite != [] %}
+                    {% for fav in favorite %}
+                        {% if fav.userFk.id == app.user.id %}
+                            <a href="{{ path("delete_favorite_find", {id: fav.id}) }}"><i class='fas fa-star star2 size20'></i></a>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <a href="{{ path("add_favorite_find", {user: app.user.id, adFind: ad.id}) }}"><i class='far fa-star star2 size20'></i></a>
+                {% endif %}
             {% endif %}
-
 
             <div class='post flexColumn flexCenter colorGrey'>
                 <h1 class='colorWhite margin_15_0 center categoriesAnimal width_100'>{{ ad.animal }} trouvé </h1>
@@ -80,25 +79,25 @@
         <div id="comments" class="width_80">
             <h1 class='colorWhite margin_15_0 center categoriesAnimal width_100'>Commentaires</h1>
             {% if comments |length != 0 %}
-                {% for comment in comments %}
+                {% for comment in comments |reverse%}
                     <div class="commentArticle">
                         {% if app.user %}
                             {% for role in app.user.roles %}
                                 {% if role == "ROLE_ADMIN" or role == "ROLE_MODERATOR" %}
-                                    <a href="{{ path("adFind_edit") }}" class="colorBlack" ><i class="far fa-edit"></i></a>
-                                    <a href="" class="colorBlack"><i class="far fa-trash-alt"></i></a>
+                                    {% if app.user.id == comment.userFk.id %}
+                                        <a href="" class="colorBlack" ><i class="far fa-edit"></i></a>
+                                        <a href="" class="colorBlack"><i class="far fa-trash-alt"></i></a>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
-                        <h3 class="margin_15_0">{{ comment.userFk.firstname}} {{ comment.userFk.lastname }} <span class='colorBlue size12'> - {{ comment.date |date("d/m/Y")}} </span></h3>
+                        <h3 class="margin_15_0">{{ comment.userFk.firstname}} {{ comment.userFk.lastname }} <span class='colorBlue size12'> - {{ comment.date |date("d/m/Y à H:i")}} </span></h3>
                         <p>{{ comment.content }}</p>
                     </div>
                 {% endfor %}
             {% else %}
                 <p class="colorGrey margin_15_0 flexCenter size20">Il n'y a pas encore de commentaires !</p>
-
             {% endif %}
         </div>
     </main>
-
 {% endblock %}

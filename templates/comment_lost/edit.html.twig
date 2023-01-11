@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anim'Nord - Modifier un commentaire{% endblock %}
+
+{% block body %}
+    <h2 class="title colorWhite flexCenter width_80">Modifier un commentaire</h2>
+    {{ form_start(form, {'attr': {
+        'class': 'flexColumn width_50'
+    }}) }}
+    {{ form_row(form.content) }}
+    <div class="d-none">
+        {{ form_row(form.date) }}
+        {{ form_row(form.user_fk) }}
+        {{ form_row(form.adLost_fk) }}
+        {{ form_row(form.archive) }}
+    </div>
+    <input type="submit" id="submit" class="buttonEnter colorWhite margin100" value="Modifier">
+
+    {{ form_row(form.submit) }}
+    {{ form_widget(form._token) }}
+    <input type="hidden" name="csrf_token" value="{{ csrf_token("article-add") }}">
+    {{ form_end(form) }}
+
+{% endblock %}
