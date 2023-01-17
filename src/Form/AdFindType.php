@@ -6,6 +6,7 @@ use App\Entity\AdFind;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -122,6 +123,9 @@ class AdFindType extends AbstractType
                     ])
                 ],
                 "required" => false
+            ])
+            ->add('info_user', CheckboxType::class, [
+                'label' => "J'accepte que mes données personnelles telles que mon nom, mon prénom, mon adresse mail et mon téléphone soit visible par tous, pour pouvoir être contacté."
             ])
             ->add('user_fk', EntityType::class, ['class' => User::class, "choice_label" => "id"])
             ->add('submit', SubmitType::class, ["label" => "Publier"])

@@ -131,7 +131,10 @@
             <p>Importer une photo <i class="far fa-image"></i></p>
         </div>
 
-        <div class="d-none">{{ form_row(form.date) }}</div>
+        <div class="d-none">
+            {{ form_row(form.date) }}
+            {{ form_row(form.info_user) }}
+        </div>
         {{ form_row(form.picture) }}
         {{ form_row(form.submit) }}
         {{ form_widget(form._token) }}

@@ -133,6 +133,12 @@
 
         <div class="d-none">{{ form_row(form.date) }}</div>
         {{ form_row(form.picture) }}
+        <div class="flexRow align">
+            {{ form_widget(form.info_user, {'attr': {
+                'class': 'margin_0_20'
+            }}) }}
+            {{ form_label(form.info_user) }}
+        </div>
         {{ form_row(form.submit) }}
         {{ form_widget(form._token) }}
         <input type="hidden" name="csrf_token" value="{{ csrf_token("article-add") }}">

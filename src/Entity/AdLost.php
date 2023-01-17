@@ -58,6 +58,9 @@ class AdLost
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $picture = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $info_user = false;
+
     #[ORM\ManyToOne(inversedBy: 'adLosts')]
     private ?User $user_fk = null;
 
@@ -245,6 +248,25 @@ class AdLost
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInfoUser(): bool
+    {
+        return $this->info_user;
+    }
+
+    /**
+     * @param bool $info_user
+     * @return AdLost
+     */
+    public function setInfoUser(bool $info_user): self
+    {
+        $this->info_user = $info_user;
 
         return $this;
     }

@@ -55,6 +55,9 @@ class AdFind
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $picture = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $info_user = false;
+
     #[ORM\ManyToOne(inversedBy: 'adFinds')]
     private ?User $user_fk = null;
 
@@ -232,6 +235,26 @@ class AdFind
 
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isInfoUser(): bool
+    {
+        return $this->info_user;
+    }
+
+    /**
+     * @param bool $info_user
+     * @return AdFind
+     */
+    public function setInfoUser(bool $info_user): self
+    {
+        $this->info_user = $info_user;
+
+        return $this;
+    }
+
 
     public function getUserFk(): ?User
     {
