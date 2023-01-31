@@ -4,26 +4,80 @@
 
 {% block body %}
     <main class=" width_100 flexColumn">
-        <?php
-        if (isset($var['content'])) {
-            foreach ($var['content'] as $content) {
-                if (isset($_SESSION['role_fk'])) {
-                    if ($_SESSION['role_fk'] !== "2") {?>
-        <a href="" class="colorWhite"><i class="far fa-edit editIndex buttonGreen"></i></a>
-        <?php
-                    }
-                }
-                ?>
-        <div class="flexCenter flexColumn">
-            <img class="backgroundPet" src="{{asset('build/images/pet-parents-le-match-chien-chat.jpeg')}}" alt="chien et chat">
-            <p class="question buttonWhite colorBlue flexCenter"></p>
-        </div>
-        <div class="helpIndex colorWhite"></div>
-        <?php
-            }
-        } ?>
+       <div class="width_80 flexCenter flexRow">
+           <div class="width_50 flexCenter flexColumn">
+               <h1 class="colorBlue margin_15_0">Vous avez perdu ou vous avez trouvé un chien ou un chat près de chez vous dans le Nord ?</h1>
+               <h3 class="colorGrey">Bienvenue sur Anim'Nord un site de chien et de chat perdu ou trouvé dans le Nord (59) !</h3>
+               <div class="flexRow width_100">
+                   {% if app.user %}
+                       <a class="buttonBlue2 " href="{{ path("ad") }}">Créer une annonce </a>
 
-        <div id="#recentPost">
+                   {% else %}
+                       <a class="buttonGrey2" href="{{ path("app_register") }}">Inscrivez vous maintenant</a>
+                       <a class="buttonBlue" href="{{ path("login") }}">Connectez vous ! </a>
+
+                   {% endif %}
+               </div>
+           </div>
+           <div class="width_50">
+               <img class="width_100" src="{{ asset('build/images/chien_et_chat_bleu.png') }}" alt="Logo chien et chat">
+           </div>
+       </div>
+
+        <div class="width_100 backgroundBlue">
+            <div class="width_100 flexRow">
+                <div class="width_70 justify flexColumn">
+                    <h3>Prévention pour ne pas perdre votre animal :</h3>
+                    <ul class="list">
+                        <li>
+                            La meilleure prévention est de mettre un collier à votre animal avec un numéro de téléphone, son adresse ou bien le nom du propriétaire et de surtout le tenir en laisse.
+                        </li>
+                        <li>
+                            Faire identifier votre animal est le moyen le plus sûr de pouvoir le retrouver en cas de perte ou de vol.
+                        </li>
+                    </ul>
+                </div>
+                <div class="width_30 flexCenter">
+                    <img class="width_50" src="{{ asset('build/images/animal_en_laisse.png') }}" alt="Chien en laisse avec un collier et une puce">
+                </div>
+            </div>
+
+            <div class="width_100 flexRow">
+                <div class="width_30 flexCenter">
+                    <img class="width_50" src="{{ asset('build/images/animal_en_laisse.png') }}" alt="Chien en laisse avec un collier et une puce">
+                </div>
+                <div class="width_70 justify flexColumn">
+                    <h3>Que faire lorsque vous perdez votre animal :</h3>
+                    <ul class="list">
+                        <li>Si votre animal est identifié, vous pouvez déclarer sa disparition au fichier national I-CAD. Il suffit de vous connecter au site Internet, espace "J'ai perdu mon animal". Ou bien sur l'application officielle gratuite : Filalapat.</li>
+                        <li>Contactez les vétérinaires, les refuges, association de protections animales et les fourrières.</li>
+                        <li>Informer les personnes proches de chez vous.</li>
+                        <li>Poser des affiches avec vos coordonnées et une photo de votre animal.</li>
+                        <li class="bold">Poster une annonce sur ce site !</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="width_100 flexRow">
+                <div class="width_70 justify flexColumn">
+                    <h3>Que faire lorsque vous trouvez un animal :</h3>
+                    <ul class="list">
+                        <li>Vérifier s'il porte un collier ou un numéro de tatouage dans la face interne d'une oreille ou d'une cuisse.</li>
+                        <li>L'apporter chez le vétérinaire.</li>
+                        <li>Contactez le fichier d'identification I-CAD : 0810 778 778. Vous pouvez aussi enregistrer votre déclaration sur le site Internet : www.i-cad.fr. Espace "J'ai trouvé un animal".</li>
+                        <li>Prévenir les vétérinaires, les refuges, association de protections animales et les fourrières.</li>
+                        <li class="bold">Poster une annonce sur ce site !</li>
+                    </ul>
+                </div>
+                <div class="width_30 flexCenter">
+                    <img class="width_50" src="{{ asset('build/images/animal_en_laisse.png') }}" alt="Chien en laisse avec un collier et une puce">
+                </div>
+            </div>
+
+            <h3 class="flexCenter">Ca n'arrive pas qu'aux autres alors faites attention à votre animal !</h3>
+        </div>
+
+        <div id="recentPost">
             <h2 class="center title2">Annonces récentes de chiens et de chats perdus</h2>
             <div class="width_80 flexRow flexCenter flexWrap">
                 {% if adLost %}
@@ -49,9 +103,8 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            <a href="" class="buttonEnter buttonCenter radius10 align flexCenter">Allez sur les annonces <i class="fas fa-hand-point-right"></i></a>
+            <a href="{{ path("adLost") }}" class="buttonEnter buttonCenter radius10 align flexCenter">Allez sur les annonces</a>
 
-            <div class="separatorHorizontal"></div>
             <h2 class="center title2">Annonces récentes de chiens et de chats trouvés</h2>
             <div class="width_80 flexRow flexCenter flexWrap">
                 {% if adFind %}
@@ -77,21 +130,22 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            <a href="" class="buttonEnter buttonCenter radius10 align flexCenter">Allez sur les annonces <i class="fas fa-hand-point-right"></i></a>
+            <a href="{{ path('adFind') }}" class="buttonEnter buttonCenter radius10 align flexCenter">Allez sur les annonces</a>
 
-            <div class="accountIndex">
-                {% if app.user %}
-                    <h2 class="title3 center">Vous avez perdu votre animal ? Ou vous avez trouvé un animal ?</h2>
-                    <div id="connection_disconnection" class="flexRow flexCenter">
-                        <a href="{{ path("ad") }}" class="buttonWhite2">Publier une annonce</a>
+            <div class="backgroundBlue">
+                <div class="width_100 flexRow">
+                    <div class="width_70 justify flexColumn">
+                        <h2>Le but d'Anim'Nord :</h2>
+                        <p>
+                            Vous aider à retrouver votre animal et vous permettre d'aider aux propriétaires de retrouver leur animal en catégorisant que la région NORD (59). Juste en postant une annonce en remplissant le formulaire.
+                            <br><br>
+                            Notre plus grand but est de vous rendre le sourire !
+                        </p>
                     </div>
-                {% else %}
-                    <h2 class="title3 center">Pas encore incrit ? ou pas encore connecté ?</h2>
-                    <div id="connection_disconnection" class="flexRow flexCenter">
-                        <a href="{{ path('app_register') }}" class="buttonWhite2">Inscription</a>
-                        <a href="{{ path('login') }}" class="buttonWhite2">Connexion</a>
+                    <div class="width_30 flexCenter">
+                        <img class="width_50" src="{{ asset('build/images/logo-animnord.jpg') }}" alt="Logo Anim'Nord">
                     </div>
-                {% endif %}
+                </div>
             </div>
         </div>
     </main>

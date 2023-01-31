@@ -26,28 +26,29 @@
             {% endfor %}
         {% endfor %}
         <header>
-            <div class="flexCenter">
-                <img class="logoAnim" src="{{ asset('build/images/banniereAnimNord.png') }}" alt="Logo Anim'Nord">
-            </div>
-            <div id="menu" class="menu flexCenter flexRow">
-                <p><i class="fas fa-paw"></i></p>
-                <a class="linkMenu" href="{{ path("home") }}">Accueil</a>
-                <a class="linkMenu" href="{{ path("adLost") }}">Perdus</a>
-                <a class="linkMenu" href="{{ path("adFind") }}">Trouvés</a>
-                {% if (app.user) %}
-                    <a class="linkMenu" href="{{ path("ad") }}">Publier une annonce</a>
-                    <a class="linkMenu" id="pseudo" href="{{ path("account") }}"><i class="fas fa-user-circle"></i><?= $_SESSION["firstname"]?></a>
-                {% else %}
-                    <a class="linkMenu" href="{{ path("login") }}">Connexion</a>
-                    <a class="linkMenu" href="{{ path("app_register") }}">Inscription </a>
-                {% endif %}
-                <p><i class="fas fa-paw"></i></p>
+            <div id="menu" class="menu flexRow width_100">
+                <div class="logoMenu1 width_20">
+                    <img class="logoAnim" src="{{ asset('build/images/logo-animnord.jpg') }}" alt="Logo Anim'Nord">
+                </div>
+                <div class="flexRight width_80">
+                    <a class="linkMenu" href="{{ path("home") }}">Accueil</a>
+                    <a class="linkMenu" href="{{ path("adLost") }}">Perdus</a>
+                    <a class="linkMenu" href="{{ path("adFind") }}">Trouvés</a>
+                    {% if (app.user) %}
+                        <a class="linkMenu" href="{{ path("ad") }}">Publier une annonce</a>
+                        <a class="linkMenu" id="pseudo" href="{{ path("account") }}"><i class="fas fa-user-circle"></i>{{ app.user.firstname }}</a>
+                    {% else %}
+                        <a class="linkMenu" href="{{ path("login") }}">Connexion</a>
+                        <a class="linkMenu" href="{{ path("app_register") }}">Inscription </a>
+                    {% endif %}
+                </div>
+
             </div>
 
             <div id="menuMobile" class="flexRow align">
                 <p id="logoMenu"><i class="fas fa-bars"></i></p>
                 <a href="{{ path('home') }}">
-                    <img class="logoAnim2" src="{{ asset('build/images/logo-animNord.png') }}" alt="Logo Anim'Nord">
+                    <img class="logoAnim2" src="{{ asset('build/images/logo-animnord.jpg') }}" alt="Logo Anim'Nord">
                 </a>
             </div>
 
@@ -57,7 +58,7 @@
                 <a class="linkMenuMobile flexRow align" href="{{ path("adFind") }}"><i class="fas fa-chevron-circle-right"></i>Trouvés</a>
                 {% if (app.user) %}
                     <a class="linkMenuMobile flexRow align" href="{{ path("ad") }}"><i class="fas fa-chevron-circle-right"></i>Publier une annonce</a>
-                    <a class="linkMenuMobile flexRow align" href="{{ path("account") }}"><i class="fas fa-chevron-circle-right"></i><i class="fas fa-user-circle"></i><?= $_SESSION["firstname"]?></a>
+                    <a class="linkMenuMobile flexRow align" href="{{ path("account") }}"><i class="fas fa-chevron-circle-right"></i><i class="fas fa-user-circle"></i>{{ app.user.firstname }}</a>
                 {% else %}
                     <a class="linkMenuMobile flexRow align" href="{{ path("login") }}"><i class="fas fa-chevron-circle-right"></i>Connexion</a>
                     <a class="linkMenuMobile flexRow align" href="{{ path("app_register") }}"><i class="fas fa-chevron-circle-right"></i>Inscription</a>
@@ -70,18 +71,19 @@
         </body>
 
         <footer class="flexCenter flexColumn">
-            <img id="logosite" src="{{ asset('build/images/chien_chat_bleu.png') }}" alt="Logo Anim'Nord">
-            <p class="colorWhite size18">Suivez-nous :</p>
-            <div class="flexRow">
-                <a href="#"><i class="fab fa-facebook-square linkSocial"></i></a>
-                <a href="#"><i class="fab fa-twitter-square linkSocial"></i></a>
-                <a href="#"><i class="fab fa-instagram-square linkSocial"></i></a>
+            <div id="linkFooter" class="flexCenter flexRow margin_15_0">
+                <div class="flexRow">
+                    <a href="#"><i class="fab fa-facebook-f linkSocial"></i></a>
+                    <a href="#"><i class="fab fa-twitter linkSocial"></i></a>
+                    <a href="#"><i class="fab fa-instagram linkSocial"></i></a>
+                </div>
+                <div class="separatorVertical"></div>
+                <div class="flexRow size12">
+                    <a href="{{ path("app_legal_notice") }}" class="linkFooter underline">Mentions légales</a>
+                    <a href="../../index.php?controller=contact" class="linkFooter underline">Contact</a>
+                </div>
             </div>
-            <div class="separatorHorizontal2"></div>
-            <div id="containerlinkFooter" class="flexRow">
-                <a href="{{ path("app_legal_notice") }}" class="linkFooter underline">Mentions légales</a>
-                <a href="../../index.php?controller=contact" class="linkFooter underline">Contact</a>
-            </div>
+            <p class="colorWhite size10">©2023 animnord.chloeDev.fr  by Chloé</p>
         </footer>
     </div>
 

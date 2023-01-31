@@ -26,9 +26,9 @@ footer {
     position: absolute;
     width: 100%;
     bottom: 0;
-    background-color: #898a8a;
-    height: 150px;
-    margin-bottom: -20px;
+    background-color: #424242;
+    height: 130px;
+    color: white;
 }
 
 main {
@@ -40,9 +40,14 @@ main {
     margin: auto;
 }
 
+.flexRight {
+    display: flex;
+    justify-content: flex-end;
+    padding: 30px;
+}
+
 .menu, #menu, #menuMobile {
     width: 100%;
-    padding: 30px;
     position: relative;
 }
 
@@ -111,6 +116,10 @@ form > div > ul > li {
     padding: 5px;
 }
 
+.list > li::marker {
+    color: white;
+}
+
 .flexCenter {
     display: flex;
     align-items: center;
@@ -142,8 +151,61 @@ input.colorBlue, .end {
     margin-bottom: 20px;
 }
 
-#logoPage, .logoAnim, .backgroundPet, .width_100, .location {
+#logoPage, .backgroundPet, .width_100, .location {
     width: 100%;
+}
+
+.logoAnim {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.buttonBlue, .buttonBlue2 {
+    background-color: #2C96C6;
+    color: white;
+    text-align: center;
+    width: 50%;
+    margin: 20px 0 10px 10px;
+    padding: 10px;
+}
+
+.buttonBlue2 {
+    width: 100%;
+    margin: 20px 0 10px 0;
+}
+
+.buttonBlue:hover, .buttonBlue2:hover {
+    background-color: #1378a5;
+}
+
+.buttonGrey2 {
+    border: 1px solid #898a8a;
+    color: #898a8a;
+    text-align: center;
+    width: 50%;
+    margin: 20px 10px 10px 0;
+    padding: 10px;
+}
+
+.buttonGrey2:hover {
+    background-color: #898a8a;
+    color: white;
+}
+
+.backgroundBlue {
+    background-color: #2C96C6;
+    color: white;
+    padding: 50px;
+}
+
+.backgroundBlue > div {
+    margin: 60px 0;
+}
+
+.logoMenu1 {
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
 }
 
 .linkMenu, .linkMenuMobile {
@@ -200,9 +262,11 @@ a {
     height: 110px;
 }
 
-.backgroundWhite, main, .location, .buttonWhite2:hover, .linkSocial, .logoAnim2, .inputWhite, .table >p:nth-child(2n) {
+.backgroundWhite, main, .location, .buttonWhite2:hover, .linkSocial, .logoAnim2, .logoAnim, .inputWhite, .table >p:nth-child(2n) {
     background-color: white;
 }
+
+
 
 .width_50, #delete > img {
     width: 50%;
@@ -242,7 +306,7 @@ label {
     padding: 30px;
 }
 
-.radius10, .buttonWhite2, .buttonWhite, .post, .logoAnim2,.linkAccount:hover, .containerAccount, .tooltip:before, .buttonComment,
+.radius10, .buttonWhite2, .buttonWhite, .post, .logoAnim2, .linkAccount:hover, .containerAccount, .tooltip:before, .buttonComment,
 .userAd, .commentArticle, .buttonGreen {
     border-radius: 10px;
 }
@@ -316,6 +380,10 @@ input[type="radio"], input[type="checkbox"] {
 .title2, .title3 {
     margin: 20px auto;
     font-size: 25px;
+}
+
+.title2 {
+    margin-top: 100px;
 }
 
 .containerRecentPost {
@@ -533,30 +601,15 @@ p {
     background-color: #B7B8B8;
 }
 
-.fa-facebook-square {
-    color: #3b5998;
-}
-
-.fa-twitter-square {
-    color: #1DA1F2;
-}
-
-.fa-instagram-square {
-    color: #C32AA3;
-}
-
 .linkSocial {
-    font-size: 25px;
-    margin: 10px;
+    font-size: 20px;
+    margin: 20px;
+    background-color: transparent;
+    color: white;
 }
 
 .linkSocial:hover {
-    box-shadow: 2px 2px 10px #ffffff;
-}
-
-#containerlinkFooter {
-    margin: 20px;
-    font-size: 12px;
+    color: #2C96C6;
 }
 
 .linkFooter {
@@ -616,6 +669,11 @@ li {
     margin-left: 65%;
 }
 
+.justify {
+    display: flex;
+    justify-content: center;
+}
+
 .flexWrap {
     flex-wrap: wrap;
 }
@@ -662,8 +720,8 @@ li {
 }
 
 .separatorVertical {
-    border-left: 1px solid #B7B8B8;
-    height: 50px;
+    border-left: 2px solid white;
+    height: 30px;
 }
 
 .linkAccount:hover {
@@ -832,6 +890,10 @@ form > div {
 
 .size12 {
     font-size: 12px;
+}
+
+.size10 {
+    font-size: 10px;
 }
 
 .bold, .titlePet, .categoriesAnimal {
@@ -1210,6 +1272,12 @@ form > div > div {
     .logoAnim2 {
         width: 70%;
         margin-left: 25%;
+    }
+    #linkFooter {
+        flex-direction: column;
+    }
+    .separatorVertical {
+        display: none;
     }
     .buttonEnter, .containerRecentPost {
         width: 80%;
